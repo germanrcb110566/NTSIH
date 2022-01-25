@@ -11,7 +11,8 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class mPersona
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,7 @@ namespace NTSIH.Models
             this.rMedico_Calendario = new HashSet<rMedico_Calendario>();
             this.rRol_Persona = new HashSet<rRol_Persona>();
         }
-    
+        private mAuditoria aud = new mAuditoria();
         public int registro_id { get; set; }
         public int identificacion_tipo { get; set; }
         public string identificacion { get; set; }
@@ -54,5 +55,58 @@ namespace NTSIH.Models
         public virtual ICollection<rMedico_Calendario> rMedico_Calendario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
+
+
+        public mPersona unRegistro(ref string Mensaje, string Identificacion)
+        {
+            var registro = new mPersona();
+            try
+            {
+                using (var conexion = new SIHEntities())
+                {
+                    registro = conexion.mPersona.Where(a => a.identificacion == Identificacion).Single();
+                    Mensaje = "0000IDENTIFICACIÓN EXISTE EN EL SISTEMA";
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "0010IDENTIFICACIÓN NO EXISTE EN EL SISTEMA" + ex.Message;
+                //throw;
+            }
+            return registro;
+        }
+        public string ObtenerRol(ref string Mensaje, string registro_id)
+        {
+            string Rol = null;
+            string SentenciaSQL = "select nombre from catalogo where  registro_id in (";
+            SentenciaSQL += "select rol_id from rrol_Persona where persona_id in ";
+            SentenciaSQL += "(select registro_id from mPersona where identificacion='" + registro_id + "')";
+            SentenciaSQL += ") order by descripcion asc";
+
+            try
+            {
+                using (var conexion = new SIHEntities())
+                {
+                    // var studentName = ctx.Students.SqlQuery("Select * from Courses").ToList();
+                    // string studentName = ctx.Database.SqlQuery<string>("Select studentname from Student where studentid=1").FirstOrDefault();
+
+                    Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
+                    if (Rol != null)
+                    {
+                        Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
+                    }
+                    else
+                    {
+                        Mensaje = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "0020" + ex.Message;
+            }
+            string Log = aud.InsertarLog("public string ObtenerRol(ref string Mensaje , string registro_id)", SentenciaSQL, 1);
+            return Rol;
+        }
     }
 }

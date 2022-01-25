@@ -1,0 +1,50 @@
+﻿@model NTSIH.Models.mAtencion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mAtencion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.diagnostico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diagnostico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.examenes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.examenes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.receta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.receta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mCita.motivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mCita.motivo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cita_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

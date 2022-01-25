@@ -1,0 +1,51 @@
+﻿@model IEnumerable<NTSIH.Models.mAtencion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.diagnostico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.examenes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.receta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mCita.motivo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.diagnostico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.examenes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.receta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mCita.motivo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.cita_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.cita_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.cita_id })
+        </td>
+    </tr>
+}
+
+</table>

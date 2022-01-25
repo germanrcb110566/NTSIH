@@ -1,0 +1,57 @@
+﻿@model List<NTSIH.Models.mPersona>
+@{
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+}
+
+<br />
+
+<h4>Ingreso al Sistema Hospitalario</h4>
+<div>@ViewBag.Acceso</div>
+<div style=" color: blue; text-align: left" class="alert alert-@ViewBag.alerta">
+    - - <b>@ViewBag.Res</b> - -
+</div>
+
+<form id="FrmIngreso" action="/Acceso/Index" method="post">
+    <table>
+        <tr>
+            <td style="padding: 2px">Identificación:</td>
+            <td style="padding: 2px">
+                <input class="form-control " type="text" maxlength="13" size=100 style="width:300px" name="identificacion" minlength="6" maxlenght="13" id="identificacion" onkeypress="return event.charCode > 47 && event.charCode < 58;" required />
+            </td>
+        </tr>
+
+        <tr>
+            <td style="padding: 2px">Clave:</td>
+            <td style="padding: 2px">
+                <input class="form-control" type="password" size=100 style="width:500px" name="password" minlength="6" maxlenght="30" id="password" required />
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 2px"></td>
+            <td style="padding: 2px">
+                <button class="btn btn-success" type="submit" name="btngrabar" id="btngrabar">
+                    <span class="glyphicon glyphicon-save">Ingresar</span>
+                </button>
+            </td>
+        </tr>
+    </table>
+</form>
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+    $("#FrmIngreso").submit(function (e) {
+        e.preventDefault()
+        //Se ejecuta el Controlador Acceso / Persona
+        url = "@Url.Content("~/Acceso/Index")"
+        parametros = $(this).serialize()
+        $.post(url, parametros, function (data) {
+            if (data == "1") {
+                //Si la Ejecucion es Satisfactoria Se envia al Menu Root
+                document.location.href = "@Url.Content("~/")"
+                }
+            })
+        })
+    })
+    </script>
+
+}

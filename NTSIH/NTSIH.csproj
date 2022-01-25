@@ -128,8 +128,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\mAtencionsController.cs" />
     <Compile Include="Controllers\mAuditoriasController.cs" />
     <Compile Include="Controllers\mCalendariosController.cs" />
     <Compile Include="Controllers\mCatalogosController.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="Controllers\mPersonasController.cs" />
     <Compile Include="Controllers\rMedico_CalendarioController.cs" />
     <Compile Include="Controllers\rRol_PersonaController.cs" />
+    <Compile Include="Filtros\clsSesiones.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -295,6 +298,15 @@
     <Content Include="Views\mCitas\Details.cshtml" />
     <Content Include="Views\mCitas\Edit.cshtml" />
     <Content Include="Views\mCitas\Index.cshtml" />
+    <Content Include="Views\mAtencions\Create.cshtml" />
+    <Content Include="Views\mAtencions\Delete.cshtml" />
+    <Content Include="Views\mAtencions\Details.cshtml" />
+    <Content Include="Views\mAtencions\Edit.cshtml" />
+    <Content Include="Views\mAtencions\Index.cshtml" />
+    <Content Include="Views\Acceso\Index.cshtml" />
+    <Content Include="Views\Acceso\Cerrar.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_Layout - Copia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
