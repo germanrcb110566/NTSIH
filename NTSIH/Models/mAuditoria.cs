@@ -25,15 +25,17 @@ namespace NTSIH.Models
 
 
 
-        public string InsertarLog(string accion,
-                                  string sentenciasql,
-                                  int persona_id)
+        public string InsertarLog(int Usuario_Id,
+                                  int Rol_Id,
+                                  int Modulo_Id,
+                                  string sentenciasql)
         {
             string retorno = "";
             string cadena = "'" + DateTime.Now + "',";
-            cadena += "'" + accion.ToUpper() + "',";
-            cadena += persona_id + ",";
-            cadena += "'" + sentenciasql.ToUpper() + "'";
+            cadena += Usuario_Id + ",";
+            cadena += Rol_Id + ",";
+            cadena += Modulo_Id + ",";
+            cadena += "'" + sentenciasql.Replace("'", "#") + "'";
 
             try
             {

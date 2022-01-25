@@ -105,7 +105,7 @@ namespace NTSIH.Models
             {
                 Mensaje = "0020" + ex.Message;
             }
-            string Log = aud.InsertarLog("public string ObtenerRol(ref string Mensaje , string registro_id)", SentenciaSQL, 1);
+            //string Log = aud.InsertarLog("public string ObtenerRol(ref string Mensaje , string registro_id)", SentenciaSQL, 1);
             return Rol;
         }
     }

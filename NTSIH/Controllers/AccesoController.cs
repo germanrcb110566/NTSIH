@@ -18,7 +18,7 @@ namespace NTSIH.Controllers
         public ActionResult Index()
         {
             ViewBag.alerta = "info";
-            ViewBag.res = "Acceso al Sistema".ToUpper();
+            ViewBag.Res = "Acceso al Sistema".ToUpper();
             return View();
         }
         [HttpPost]
@@ -36,7 +36,7 @@ namespace NTSIH.Controllers
                     return View();
                 }
                 int Persona_Id = oUser.registro_id;         //Se obtiene el numero de Id de la Persona que esta accediendo
-                string oRol = cat.ObtenerRol(ref Mensaje, identificacion);
+                string oRol = cat.ObtenerRol(ref Mensaje, identificacion, Persona_Id );
                 if (Mensaje.Substring(0, 4) != "0000")
                 {
                     ViewBag.alerta = "danger";
@@ -52,12 +52,13 @@ namespace NTSIH.Controllers
                     Session["Rol"] = oRol;
                     ViewBag.alerta = "success";
                     ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+                    ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
                     return Content("1");
                 }
                 else
                 {
                     ViewBag.alerta = "danger";
-                    ViewBag.res = "Error: Clave Ingresada NO es correcta".ToUpper();
+                    ViewBag.Res = "Error: Clave Ingresada NO es correcta".ToUpper();
                 }
             }
             catch (Exception ex)

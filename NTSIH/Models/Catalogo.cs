@@ -56,13 +56,18 @@ namespace NTSIH.Models
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
 
 
-        public string ObtenerRol(ref string Mensaje, string registro_id)
+        public string ObtenerRol(ref string Mensaje, string Persona_Id, int Registro_id )
         {
+            int Rol_Id = 0;
             string Rol = null;
             string SentenciaSQL = "select nombre from catalogo where  registro_id in (";
             SentenciaSQL += "select rol_id from rrol_Persona where persona_id in ";
-            SentenciaSQL += "(select registro_id from mPersona where identificacion='" + registro_id + "')";
+            SentenciaSQL += "(select registro_id from mPersona where identificacion='" + Persona_Id + "')";
             SentenciaSQL += ") order by descripcion asc";
+            string SentenciaSQL2 = "select registro_id from catalogo where  registro_id in (";
+            SentenciaSQL2 += "select  rol_id  from rrol_Persona where persona_id in ";
+            SentenciaSQL2 += "(select registro_id from mPersona where identificacion='" + Persona_Id + "')";
+            SentenciaSQL2 += ") order by descripcion asc";
 
             try
             {
@@ -75,6 +80,7 @@ namespace NTSIH.Models
                     if (Rol != null)
                     {
                         Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
+                        Rol_Id = Convert.ToInt32(conexion.Database.SqlQuery<int>(SentenciaSQL2).FirstOrDefault());
                     }
                     else
                     {
@@ -86,7 +92,7 @@ namespace NTSIH.Models
             {
                 Mensaje = "0020" + ex.Message;
             }
-            string Log = aud.InsertarLog("public string ObtenerRol(ref string Mensaje , string registro_id)", SentenciaSQL, 1);
+            string Log = aud.InsertarLog(Registro_id, Convert.ToInt32(Rol_Id), 1 , SentenciaSQL);
             return Rol;
         }
     }
