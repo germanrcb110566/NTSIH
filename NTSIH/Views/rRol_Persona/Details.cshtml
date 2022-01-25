@@ -1,0 +1,42 @@
+﻿@model NTSIH.Models.rRol_Persona
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>rRol_Persona</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.registro_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registro_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catalogo.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catalogo.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mPersona.identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mPersona.identificacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

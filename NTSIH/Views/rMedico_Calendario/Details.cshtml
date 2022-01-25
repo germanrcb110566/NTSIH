@@ -1,0 +1,42 @@
+﻿@model NTSIH.Models.rMedico_Calendario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>rMedico_Calendario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.registro_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.registro_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mCalendario.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mCalendario.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mPersona.identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mPersona.identificacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

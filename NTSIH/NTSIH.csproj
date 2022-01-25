@@ -133,9 +133,12 @@
     <Compile Include="Controllers\mAuditoriasController.cs" />
     <Compile Include="Controllers\mCalendariosController.cs" />
     <Compile Include="Controllers\mCatalogosController.cs" />
+    <Compile Include="Controllers\mCitasController.cs" />
     <Compile Include="Controllers\mParametrosController.cs" />
     <Compile Include="Controllers\mPermisosController.cs" />
     <Compile Include="Controllers\mPersonasController.cs" />
+    <Compile Include="Controllers\rMedico_CalendarioController.cs" />
+    <Compile Include="Controllers\rRol_PersonaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,6 +280,21 @@
     <Content Include="Views\mPersonas\Details.cshtml" />
     <Content Include="Views\mPersonas\Edit.cshtml" />
     <Content Include="Views\mPersonas\Index.cshtml" />
+    <Content Include="Views\rMedico_Calendario\Create.cshtml" />
+    <Content Include="Views\rMedico_Calendario\Delete.cshtml" />
+    <Content Include="Views\rMedico_Calendario\Details.cshtml" />
+    <Content Include="Views\rMedico_Calendario\Edit.cshtml" />
+    <Content Include="Views\rMedico_Calendario\Index.cshtml" />
+    <Content Include="Views\rRol_Persona\Create.cshtml" />
+    <Content Include="Views\rRol_Persona\Delete.cshtml" />
+    <Content Include="Views\rRol_Persona\Details.cshtml" />
+    <Content Include="Views\rRol_Persona\Edit.cshtml" />
+    <Content Include="Views\rRol_Persona\Index.cshtml" />
+    <Content Include="Views\mCitas\Create.cshtml" />
+    <Content Include="Views\mCitas\Delete.cshtml" />
+    <Content Include="Views\mCitas\Details.cshtml" />
+    <Content Include="Views\mCitas\Edit.cshtml" />
+    <Content Include="Views\mCitas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
