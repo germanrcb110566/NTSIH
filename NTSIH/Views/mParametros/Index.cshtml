@@ -1,0 +1,57 @@
+﻿@model IEnumerable<NTSIH.Models.mParametros>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.smtpserver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.smtppuerto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo_sistema)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clave_correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.smtpserver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.smtppuerto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo_sistema)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clave_correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.registro_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.registro_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.registro_id })
+        </td>
+    </tr>
+}
+
+</table>

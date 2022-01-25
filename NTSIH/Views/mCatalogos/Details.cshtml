@@ -1,0 +1,34 @@
+﻿@model NTSIH.Models.mCatalogo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mCatalogo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.catalogo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catalogo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.registro_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

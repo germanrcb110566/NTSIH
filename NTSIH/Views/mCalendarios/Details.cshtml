@@ -1,0 +1,98 @@
+﻿@model NTSIH.Models.mCalendario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mCalendario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.entre_semana)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.entre_semana)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fin_de_semana)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fin_de_semana)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horario_desde_m)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horario_desde_m)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horario_hasta_m)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horario_hasta_m)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horario_desde_v)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horario_desde_v)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.horario_hasta_v)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.horario_hasta_v)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intervalo_citas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intervalo_citas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.intervalo_fechas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.intervalo_fechas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.registro_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

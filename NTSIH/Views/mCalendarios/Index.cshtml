@@ -1,0 +1,87 @@
+﻿@model IEnumerable<NTSIH.Models.mCalendario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entre_semana)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fin_de_semana)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horario_desde_m)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horario_hasta_m)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horario_desde_v)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.horario_hasta_v)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intervalo_citas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.intervalo_fechas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.entre_semana)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fin_de_semana)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horario_desde_m)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horario_hasta_m)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horario_desde_v)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.horario_hasta_v)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intervalo_citas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.intervalo_fechas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.registro_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.registro_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.registro_id })
+        </td>
+    </tr>
+}
+
+</table>
