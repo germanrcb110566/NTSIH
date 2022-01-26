@@ -312,6 +312,10 @@
     <Content Include="Views\Shared\_LayoutMedico.cshtml" />
     <Content Include="Views\Shared\_LayoutAsistentes.cshtml" />
     <Content Include="Views\Shared\_LayoutPacientes.cshtml" />
+    <Content Include="Views\mPersonas\CreatePaciente.cshtml" />
+    <Content Include="Views\Home\IndexPaciente.cshtml" />
+    <Content Include="Views\Home\IndexAdmin.cshtml" />
+    <Content Include="Views\Home\IndexGestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

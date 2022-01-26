@@ -46,15 +46,14 @@
         url = "@Url.Content("~/Acceso/Index")"
         parametros = $(this).serialize()
         $.post(url, parametros, function (data) {
-             if (data == "1") {
+            if (data == "1") {
                 //Si la Ejecucion es Satisfactoria Se envia al Menu Root
 
                 document.location.href = "@Url.Content("~/")"
             }
-            else
-            {
-                document.location.href = "@Url.Content("~/")"
-            }
+            else {
+                    document.location.href = "@Url.Content("~/")"
+                }
             })
         })
     })

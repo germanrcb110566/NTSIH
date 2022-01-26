@@ -21,6 +21,7 @@ namespace NTSIH.Controllers
             ViewBag.Res = "Acceso al Sistema".ToUpper();
             return View();
         }
+
         [HttpPost]
         public ActionResult Index(string identificacion, string password)
         {
@@ -53,7 +54,18 @@ namespace NTSIH.Controllers
                     ViewBag.alerta = "success";
                     ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
                     ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-                    return Content("1");
+                    //if (oRol == "PACIENTE")
+                    //{
+                        return Content("1");
+                //    }
+                //    if (oRol == "ADMINISTRADOR")
+                //    {
+                //        return Content("2");
+                //    }
+                //    if (oRol == "AUXILIAR" && oRol == "SECRETARIA" && oRol == "SERVICIOS GENERALES")
+                //    {
+                //        return Content("3");
+                //    }
                 }
                 else
                 {

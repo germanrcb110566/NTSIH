@@ -12,6 +12,18 @@ namespace NTSIH.Controllers
         {
             return View();
         }
+        public ActionResult IndexPaciente()
+        {
+            return View();
+        }
+        public ActionResult IndexAdmin()
+        {
+            return View();
+        }
+        public ActionResult IndexGestion()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

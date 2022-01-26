@@ -18,6 +18,7 @@ namespace NTSIH.Controllers
         // GET: mCitas
         public async Task<ActionResult> Index()
         {
+            //db.Catalogo.Where(d => d.catalogo_id == 1),
             var mCita = db.mCita.Include(m => m.Catalogo).Include(m => m.mAtencion).Include(m => m.mPersona).Include(m => m.mPersona1);
             return View(await mCita.ToListAsync());
         }
@@ -40,9 +41,10 @@ namespace NTSIH.Controllers
         // GET: mCitas/Create
         public ActionResult Create()
         {
-            ViewBag.especialidad_id = new SelectList(db.Catalogo, "registro_id", "nombre");
+            ViewBag.especialidad_id = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 6), "registro_id", "nombre");
             ViewBag.registro_id = new SelectList(db.mAtencion, "cita_id", "diagnostico");
-            ViewBag.paciente_id = new SelectList(db.mPersona, "registro_id", "identificacion");
+            //ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre");
+            ViewBag.paciente_id = new SelectList(db.mPersona, "registro_id", "identificacion", "Nombres");
             ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion");
             return View();
         }

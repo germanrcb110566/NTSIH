@@ -12,7 +12,7 @@ namespace NTSIH.Filtros
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (HttpContext.Current.Request.RawUrl.ToString() == "/mPersonas/Create")
+            if (HttpContext.Current.Request.RawUrl.ToString() == "/mPersonas/CreatePaciente")
             {
                 // filterContext.HttpContext.Response.Redirect("~/Registro/Registrar");
             }
