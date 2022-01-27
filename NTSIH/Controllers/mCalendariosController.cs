@@ -18,12 +18,18 @@ namespace NTSIH.Controllers
         // GET: mCalendarios
         public async Task<ActionResult> Index()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             return View(await db.mCalendario.ToListAsync());
         }
 
         // GET: mCalendarios/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +45,9 @@ namespace NTSIH.Controllers
         // GET: mCalendarios/Create
         public ActionResult Create()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             return View();
         }
 
@@ -62,6 +71,9 @@ namespace NTSIH.Controllers
         // GET: mCalendarios/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,6 +105,9 @@ namespace NTSIH.Controllers
         // GET: mCalendarios/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,6 +133,9 @@ namespace NTSIH.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (disposing)
             {
                 db.Dispose();

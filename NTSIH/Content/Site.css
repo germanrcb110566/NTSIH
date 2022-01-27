@@ -22,20 +22,16 @@ select,
 textarea {
     max-width: 280px;
 }
-/*<style type="text/css" >*/
-#caja {
+/*<style type="text/css" */
+/*#caja {
     height: 50px;
 }
 
-{
+#texto-left {
     float: left;
 }
 
-#texto-left
-
 #texto-rigth {
     float: right;
-}
-
-/*</style >
-*/
+}*/
+/*</style >*/

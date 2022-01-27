@@ -18,7 +18,9 @@ namespace NTSIH.Controllers
         // GET: Catalogos
         public async Task<ActionResult> Index()
         {
-            ViewBag.alerta = "info";
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             ViewBag.mensaje = "Index:Maestro de Catalogos".ToUpper();
 
             var catalogo = db.Catalogo.Include(c => c.mCatalogo);
@@ -28,6 +30,9 @@ namespace NTSIH.Controllers
         // GET: Catalogos/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -43,6 +48,9 @@ namespace NTSIH.Controllers
         // GET: Catalogos/Create
         public ActionResult Create()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             ViewBag.catalogo_id = new SelectList(db.mCatalogo, "registro_id", "catalogo");
             return View();
         }
@@ -68,6 +76,9 @@ namespace NTSIH.Controllers
         // GET: Catalogos/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -101,6 +112,9 @@ namespace NTSIH.Controllers
         // GET: Catalogos/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -126,6 +140,9 @@ namespace NTSIH.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (disposing)
             {
                 db.Dispose();

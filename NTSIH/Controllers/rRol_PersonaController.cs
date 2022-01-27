@@ -18,6 +18,9 @@ namespace NTSIH.Controllers
         // GET: rRol_Persona
         public async Task<ActionResult> Index()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             var rRol_Persona = db.rRol_Persona.Include(r => r.Catalogo).Include(r => r.mPersona);
             return View(await rRol_Persona.ToListAsync());
         }
@@ -25,6 +28,9 @@ namespace NTSIH.Controllers
         // GET: rRol_Persona/Details/5
         public async Task<ActionResult> Details(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -40,6 +46,9 @@ namespace NTSIH.Controllers
         // GET: rRol_Persona/Create
         public ActionResult Create()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre");
             ViewBag.persona_id = new SelectList(db.mPersona, "registro_id", "identificacion");
             return View();
@@ -67,6 +76,9 @@ namespace NTSIH.Controllers
         // GET: rRol_Persona/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -102,6 +114,9 @@ namespace NTSIH.Controllers
         // GET: rRol_Persona/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -127,6 +142,9 @@ namespace NTSIH.Controllers
 
         protected override void Dispose(bool disposing)
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             if (disposing)
             {
                 db.Dispose();

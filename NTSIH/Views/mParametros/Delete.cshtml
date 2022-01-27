@@ -8,6 +8,9 @@
     <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
     <div id="texto-rigth">@ViewBag.acceso</div>
 </div>
+<br />
+<br />
+<br />
 
 <h3>Esta Seguro de Eliminar el Registro?</h3>
 <div>
@@ -61,8 +64,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
         </div>
     }
 </div>

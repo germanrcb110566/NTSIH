@@ -8,10 +8,13 @@
     <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
     <div id="texto-rigth">@ViewBag.acceso</div>
 </div>
+<br />
+<br />
+<br />
 
 
 <div>
-    <h4>mParametros</h4>
+    <h4>Parametros</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -57,6 +60,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.registro_id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.registro_id }) |
+    @Html.ActionLink("Regresar", "Index")
 </p>

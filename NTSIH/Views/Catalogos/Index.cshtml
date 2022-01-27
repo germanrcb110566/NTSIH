@@ -6,16 +6,11 @@
 }
 <div id="caja">
     <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
-    <div id="texto-rigth">@ViewBag.acceso</div>
+    <div id="texto-rigth" style="color: blue" class="alert alert-@ViewBag.alerta">@ViewBag.acceso</div>
 </div>
-
-<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
-<script src="~/Scripts/jquery.dataTables.js"></script>
-
-<div id="caja">
-    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
-    <div id="texto-rigth">@ViewBag.acceso</div>
-</div>
+<br />
+<br />
+<br />
 <p>
     @Html.ActionLink("Crear Nuevo Atributo de Catálogo", "Create")
 </p>
@@ -52,16 +47,12 @@
                 @Html.DisplayFor(modelItem => item.mCatalogo.catalogo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Editar", new { id = item.registro_id }) |
-                @Html.ActionLink("Details", "Detalles", new { id = item.registro_id }) |
-                @Html.ActionLink("Delete", "Eliminar", new { id = item.registro_id })
+                @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
             </td>
         </tr>
     }
 
 </table>
-<script>
-    $(document).ready(function () {
-        $('#tabla_Catalogos').DataTable();
-    });
-</script>
+

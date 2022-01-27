@@ -8,11 +8,13 @@
     <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
     <div id="texto-rigth">@ViewBag.acceso</div>
 </div>
-
+<br />
+<br />
+<br />
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nueva Atención", "Create")
 </p>
 <table class="table">
     <tr>
@@ -47,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.mCita.motivo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.cita_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.cita_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.cita_id })
+                @Html.ActionLink("Editar", "Edit", new { id = item.cita_id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.cita_id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.cita_id })
             </td>
         </tr>
     }

@@ -8,9 +8,12 @@
     <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
     <div id="texto-rigth">@ViewBag.acceso</div>
 </div>
+<br />
+<br />
+<br />
 
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Está seguro de eliminar el registro?</h3>
 <div>
     <h4>mCita</h4>
     <hr />
@@ -86,8 +89,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
         </div>
     }
 </div>
