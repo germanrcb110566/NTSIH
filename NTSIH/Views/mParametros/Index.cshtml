@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<NTSIH.Models.mParametros>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+    Layout = ViewBag.layout;
 }
+<div id="caja">
+    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth">@ViewBag.acceso</div>
+</div>
 
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,29 +33,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.smtpserver)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.smtppuerto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo_sistema)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.clave_correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.registro_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.registro_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.registro_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.smtpserver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.smtppuerto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo_sistema)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.clave_correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.registro_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.registro_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.registro_id })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -1,12 +1,16 @@
 ﻿@model NTSIH.Models.rRol_Persona
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+    Layout = ViewBag.layout;
 }
+<div id="caja">
+    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth">@ViewBag.acceso</div>
+</div>
 
-<h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Está seguro de eliminar el registro?</h3>
 <div>
     <h4>rRol_Persona</h4>
     <hr />
@@ -37,7 +41,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

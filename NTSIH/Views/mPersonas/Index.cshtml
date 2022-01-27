@@ -1,10 +1,14 @@
 ﻿@model IEnumerable<NTSIH.Models.mPersona>
 
-@*@{
-    ViewBag.Title = "Módulo de Personas";
+@{
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+    Layout = ViewBag.layout;
 }
+<div id="caja">
+    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth">@ViewBag.acceso</div>
+</div>
 
-<h2>Inicio</h2>*@
 
 <p>
     @Html.ActionLink("Crear Nueva Persona", "Create")
@@ -56,56 +60,57 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.identificacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.apellidos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.celular)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecha_nacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.correo_electronico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.clave)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Catalogo.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Catalogo1.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Catalogo2.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Catalogo3.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.registro_id }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.registro_id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.registro_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo_electronico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catalogo.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catalogo1.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catalogo2.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catalogo3.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
+            </td>
+        </tr>
+    }
 
 </table>

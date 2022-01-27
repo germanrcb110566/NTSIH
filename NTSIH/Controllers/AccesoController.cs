@@ -18,7 +18,8 @@ namespace NTSIH.Controllers
         public ActionResult Index()
         {
             ViewBag.alerta = "info";
-            ViewBag.Res = "Acceso al Sistema".ToUpper();
+            ViewBag.mensaje = "Acceso al Sistema".ToUpper();
+            ViewBag.layout = "~/Views/Shared/_Layout.cshtml";
             return View();
         }
 
@@ -53,19 +54,26 @@ namespace NTSIH.Controllers
                     Session["Rol"] = oRol;
                     ViewBag.alerta = "success";
                     ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+                    Session["Layout"] = ViewBag.layout;
                     ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-                    //if (oRol == "PACIENTE")
-                    //{
-                        return Content("1");
-                //    }
-                //    if (oRol == "ADMINISTRADOR")
-                //    {
-                //        return Content("2");
-                //    }
-                //    if (oRol == "AUXILIAR" && oRol == "SECRETARIA" && oRol == "SERVICIOS GENERALES")
-                //    {
-                //        return Content("3");
-                //    }
+                    if (oRol == "PACIENTE")
+                    {
+                        ViewBag.layout = "~/Views/Shared/_LayoutPaciente.cshtml";                     
+                    }
+                    if (oRol == "ADMINISTRADOR")
+                    {
+                        ViewBag.layout = "~/Views/Shared/_LayoutAdmin.cshtml";                
+                    }
+                    if (oRol == "AUXILIAR" && oRol == "SECRETARIA" && oRol == "SERVICIOS GENERALES")
+                    {
+                        ViewBag.layout = "~/Views/Shared/_LayoutAsistente.cshtml";                  
+                    }
+                    if (oRol == "MÉDICO")
+                    {
+                        ViewBag.layout = "~/Views/Shared/_LayoutMedico.cshtml";                        
+                    }
+                    Session["Layout"] = ViewBag.layout;
+                    return Content(oRol);
                 }
                 else
                 {

@@ -1,10 +1,15 @@
 ﻿@model IEnumerable<NTSIH.Models.mAtencion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+    Layout = ViewBag.layout;
 }
+<div id="caja">
+    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth">@ViewBag.acceso</div>
+</div>
 
-<h2>Index</h2>
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -26,26 +31,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.diagnostico)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.examenes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.receta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mCita.motivo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.cita_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.cita_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.cita_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.diagnostico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.examenes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.receta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mCita.motivo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.cita_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.cita_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.cita_id })
+            </td>
+        </tr>
+    }
 
 </table>

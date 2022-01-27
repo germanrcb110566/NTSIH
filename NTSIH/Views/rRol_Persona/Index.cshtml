@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<NTSIH.Models.rRol_Persona>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+    Layout = ViewBag.layout;
 }
-
-<h2>Index</h2>
+<div id="caja">
+    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth">@ViewBag.acceso</div>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -23,23 +26,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.registro_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Catalogo.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mPersona.identificacion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.registro_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catalogo.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mPersona.identificacion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
 </table>

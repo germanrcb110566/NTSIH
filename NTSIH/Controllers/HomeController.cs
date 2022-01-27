@@ -10,18 +10,37 @@ namespace NTSIH.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             return View();
         }
         public ActionResult IndexPaciente()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             return View();
         }
         public ActionResult IndexAdmin()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
+            return View();
+        }
+        public ActionResult IndexMedico()
+        {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             return View();
         }
         public ActionResult IndexGestion()
         {
+            ViewBag.alerta = "success";
+            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
             return View();
         }
 

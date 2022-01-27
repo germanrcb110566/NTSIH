@@ -18,6 +18,7 @@ namespace NTSIH.Controllers
         // GET: rMedico_Calendario
         public async Task<ActionResult> Index()
         {
+            ViewBag.layout = "";
             var rMedico_Calendario = db.rMedico_Calendario.Include(r => r.mCalendario).Include(r => r.mPersona);
             return View(await rMedico_Calendario.ToListAsync());
         }

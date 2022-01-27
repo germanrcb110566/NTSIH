@@ -18,6 +18,9 @@ namespace NTSIH.Controllers
         // GET: Catalogos
         public async Task<ActionResult> Index()
         {
+            ViewBag.alerta = "info";
+            ViewBag.mensaje = "Index:Maestro de Catalogos".ToUpper();
+
             var catalogo = db.Catalogo.Include(c => c.mCatalogo);
             return View(await catalogo.ToListAsync());
         }
