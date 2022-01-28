@@ -69,8 +69,8 @@ namespace NTSIH.Controllers
             {
                 try
                 {
-
-               
+                    mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);
+                
                 db.mPersona.Add(mPersona);
                 await db.SaveChangesAsync();
                 string Mensaje = null;
@@ -112,7 +112,7 @@ namespace NTSIH.Controllers
             ViewBag.genero = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.genero);
             ViewBag.ciudad_residencia = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.ciudad_residencia);
             ViewBag.nacionalidad = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.nacionalidad);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index");
         }
 
         // GET: mPersonas/Create
@@ -205,8 +205,11 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "registro_id,identificacion_tipo,identificacion,nombres,apellidos,direccion,telefono,celular,fecha_nacimiento,correo_electronico,genero,ciudad_residencia,nacionalidad,clave,estado")] mPersona mPersona)
         {
+            string clave = EncDecryptController.GetSHA256(mPersona.clave);
+            mPersona.clave = clave;
             if (ModelState.IsValid)
             {
+                //mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);
                 db.Entry(mPersona).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

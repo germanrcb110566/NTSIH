@@ -45,7 +45,7 @@ namespace NTSIH.Controllers
                     ViewBag.res = "Error: Persona no Tiene Asignado un ROL en e Sistema".ToUpper();
                     return View();
                 }
-
+                //password = EncDecryptController.GetSHA256(password);
                 if (oUser.clave == password)
                 {
                     Session["Id_mPersona"] = oUser.registro_id;

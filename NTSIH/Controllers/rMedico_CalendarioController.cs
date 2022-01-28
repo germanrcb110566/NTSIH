@@ -21,7 +21,8 @@ namespace NTSIH.Controllers
             ViewBag.alerta = "success";
             ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
-            var rMedico_Calendario = db.rMedico_Calendario.Include(r => r.mCalendario).Include(r => r.mPersona);
+            //var rMedico_Calendario = db.rMedico_Calendario.Include(r => r.mCalendario).Include(r => r.mPersona);
+            var rMedico_Calendario = db.rMedico_Calendario.Include(r => r.mPersona).Include(r => r.mCalendario);
             return View(await rMedico_Calendario.ToListAsync());
         }
 
@@ -83,6 +84,7 @@ namespace NTSIH.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //rMedico_Calendario rMedico_Calendario = await db.rMedico_Calendario.FindAsync(id);
             rMedico_Calendario rMedico_Calendario = await db.rMedico_Calendario.FindAsync(id);
             if (rMedico_Calendario == null)
             {

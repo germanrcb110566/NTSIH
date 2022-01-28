@@ -21,7 +21,8 @@ namespace NTSIH.Controllers
             ViewBag.alerta = "success";
             ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
-            var mAuditoria = db.mAuditoria.Include(m => m.mPersona);
+            //var mAuditoria = db.mAuditoria.Include(m => m.mPersona);
+            var mAuditoria = db.mAuditoria.OrderByDescending(d => d.fecha).Include(m => m.mPersona);
             return View(await mAuditoria.ToListAsync());
         }
 

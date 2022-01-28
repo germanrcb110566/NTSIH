@@ -16,7 +16,7 @@
 <p>
     @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
-<table class="table">
+<table id="TablaPersonas" class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.identificacion)
@@ -49,6 +49,7 @@
             @Html.DisplayNameFor(model => model.estado)
         </th>
         <th>
+            
             @Html.DisplayNameFor(model => model.Catalogo.nombre)
         </th>
         <th>
@@ -91,6 +92,7 @@
                 @Html.DisplayFor(modelItem => item.correo_electronico)
             </td>
             <td>
+                @Html.HiddenFor(modelItem => item.clave)
                 @Html.DisplayFor(modelItem => item.clave)
             </td>
             <td>
@@ -117,3 +119,8 @@
     }
 
 </table>
+@*<script>
+        $(document).ready(function () {
+            $('#TablaPersonas').DataTable();
+        });
+</script>*@
