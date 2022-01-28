@@ -11,16 +11,13 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using NTSIH.Models;
-
+    
     public partial class mCita
     {
         public int registro_id { get; set; }
         public int paciente_id { get; set; }
         public int medico_id { get; set; }
         public int especialidad_id { get; set; }
-        //[CompareTo(this.fecha, CompareToAttribute.CompareOperator.GreaterThanEqual)]
         public System.DateTime fecha { get; set; }
         public System.DateTime hora { get; set; }
         public string motivo { get; set; }
@@ -30,41 +27,5 @@ namespace NTSIH.Models
         public virtual mAtencion mAtencion { get; set; }
         public virtual mPersona mPersona { get; set; }
         public virtual mPersona mPersona1 { get; set; }
-
-        //public class StartDateValidator : ValidationAttribute
-        //{
-        //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        //    {
-        //        var model = (mCita)validationContext.ObjectInstance;
-        //        if (model.fecha == null)  // Abort if no End Date
-        //            return ValidationResult.Success;
-
-        //        DateTime EndDate = model.fecha.GetDat
-        //        DateTime StartDate = Convert.ToDateTime(value);  // value = StartDate
-
-        //        if (StartDate > EndDate)
-        //            return new ValidationResult("The start date must be before the end date");
-        //        else
-        //            return ValidationResult.Success;
-        //    }
-        //}
-
-        //public class EndDateValidator : ValidationAttribute
-        //{
-        //    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        //    {
-        //        var model = (mCita)validationContext.ObjectInstance;
-        //        if (model.fecha == null)  // Abort if no End Date
-        //            return ValidationResult.Success;
-
-        //        DateTime EndDate = Convert.ToDateTime(value); // value = EndDate
-        //        DateTime StartDate = model.fecha;
-
-        //        if (StartDate > EndDate)
-        //            return new ValidationResult("The start date must be before the end date");
-        //        else
-        //            return ValidationResult.Success;
-        //    }
-        //}
     }
 }

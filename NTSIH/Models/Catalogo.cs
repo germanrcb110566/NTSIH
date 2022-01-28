@@ -55,8 +55,7 @@ namespace NTSIH.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
 
-
-        public string ObtenerRol(ref string Mensaje, string Persona_Id, int Registro_id )
+        public string ObtenerRol(ref string Mensaje, string Persona_Id, int Registro_id)
         {
             int Rol_Id = 0;
             string Rol = null;
@@ -92,7 +91,7 @@ namespace NTSIH.Models
             {
                 Mensaje = "0020" + ex.Message;
             }
-            string Log = aud.InsertarLog(Registro_id, Convert.ToInt32(Rol_Id), 1 , SentenciaSQL);
+            string Log = aud.InsertarLog(Registro_id, Convert.ToInt32(Rol_Id), 1, SentenciaSQL);
             return Rol;
         }
     }

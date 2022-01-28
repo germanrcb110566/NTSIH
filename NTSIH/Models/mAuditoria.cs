@@ -23,8 +23,6 @@ namespace NTSIH.Models
     
         public virtual mPersona mPersona { get; set; }
 
-
-
         public string InsertarLog(int Usuario_Id,
                                   int Rol_Id,
                                   int Modulo_Id,
@@ -55,5 +53,8 @@ namespace NTSIH.Models
             }
             return retorno;
         }
+
+
+
     }
 }

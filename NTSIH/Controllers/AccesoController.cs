@@ -45,7 +45,7 @@ namespace NTSIH.Controllers
                     ViewBag.res = "Error: Persona no Tiene Asignado un ROL en e Sistema".ToUpper();
                     return View();
                 }
-                //password = EncDecryptController.GetSHA256(password);
+                password = EncDecryptController.GetSHA256(password);
                 if (oUser.clave == password)
                 {
                     Session["Id_mPersona"] = oUser.registro_id;
@@ -78,7 +78,7 @@ namespace NTSIH.Controllers
                 else
                 {
                     ViewBag.alerta = "danger";
-                    ViewBag.Res = "Error: Clave Ingresada NO es correcta".ToUpper();
+                    ViewBag.res = "Error: Clave Ingresada NO es correcta".ToUpper();
                 }
             }
             catch (Exception ex)

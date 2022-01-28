@@ -547,7 +547,7 @@
           <Property Name="genero" Type="Int32" Nullable="false" />
           <Property Name="ciudad_residencia" Type="Int32" Nullable="false" />
           <Property Name="nacionalidad" Type="Int32" Nullable="false" />
-          <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Catalogo" Relationship="Self.FK_mPersona_Catalogo" FromRole="mPersona" ToRole="Catalogo" />
           <NavigationProperty Name="Catalogo1" Relationship="Self.FK_mPersona_Catalogo1" FromRole="mPersona" ToRole="Catalogo" />
