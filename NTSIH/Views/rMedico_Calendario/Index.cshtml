@@ -5,8 +5,8 @@
     Layout = ViewBag.layout;
 }
 <div id="caja">
-    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
-    <div id="texto-rigth">@ViewBag.acceso</div>
+    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
 </div>
 <br />
 <br />
@@ -35,25 +35,25 @@
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.registro_id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.mCalendario.nombre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.mPersona.identificacion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.mPersona.nombres)
-    </td>
-    <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.medico_id }) |
-        @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
-        @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.registro_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mCalendario.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mPersona.identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mPersona.nombres)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.medico_id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
+            </td>
+        </tr>
     }
 
 </table>

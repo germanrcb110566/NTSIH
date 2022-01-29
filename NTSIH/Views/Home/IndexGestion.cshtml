@@ -4,8 +4,10 @@
     Layout = "~/Views/Shared/_LayoutGestion.cshtml";
 }
 <h4>Ingreso al Sistema Hospitalario</h4>
-<div>@ViewBag.Acceso</div>
-<div style=" color: blue; text-align: left" class="alert alert-@ViewBag.alerta"> - - <b>@ViewBag.Res</b> - - </div>
+<div id="caja">
+    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
+</div>
 <br />
 <br />
 <br />

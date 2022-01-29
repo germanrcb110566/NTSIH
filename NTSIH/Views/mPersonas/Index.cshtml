@@ -5,8 +5,8 @@
     Layout = ViewBag.layout;
 }
 <div id="caja">
-    <div id="texto-left" style="color: blue" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
-    <div id="texto-rigth">@ViewBag.acceso</div>
+    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
 </div>
 <br />
 <br />
@@ -49,7 +49,7 @@
             @Html.DisplayNameFor(model => model.estado)
         </th>
         <th>
-            
+
             @Html.DisplayNameFor(model => model.Catalogo.nombre)
         </th>
         <th>
@@ -119,8 +119,11 @@
     }
 
 </table>
-@*<script>
+@section scripts{
+    <script>
         $(document).ready(function () {
-            $('#TablaPersonas').DataTable();
+            $("#TablaPersonas").DataTable();
         });
-</script>*@
+    </script>
+}
+

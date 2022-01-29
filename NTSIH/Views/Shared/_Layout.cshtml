@@ -6,16 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema Hospitalario</title>
 
+
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
-    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
-    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 
 <body style="background: -webkit-linear-gradient(90deg, lightgray 50%, lightstellblue 75%)">
@@ -40,32 +36,40 @@
     <footer style="background-color: darkblue; color: white; text-align: center ">
         <br /><small>&copy; @DateTime.Now.Year  Todos los derechos reservados 2022 -      German Camacho B.</small><br />
     </footer>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
 
-    <script type="text/javascript" charset="utf-8" src="~/Scripts/DataTables/datatables.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="~/Scripts/jquery-3.4.1.js"></script>
-    <script type="text/javascript" charset="utf-8" src="~/Scripts/bootstrap.js"></script>
-    <script type="text/javascript" charset="utf-8" src="~/Scripts/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf-8" src="~/Scripts/jquery-ui.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#fecha_nacimiento').datepicker({
-                dateFormat: 'yy/mm/dd',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1900, 0, 1)
-            }).val();
-        });
-    </script>
+
+
+    @*<script type="text/javascript">
+            $(function () {
+                $('#fecha_nacimiento').datepicker({
+                    dateFormat: 'yy/mm/dd',
+                    changeMonth: true,
+                    changeYear: true,
+                    minDate: new Date(1900, 0, 1)
+                }).val();
+            });
+        </script>*@
 
 
 </body>
 
 </html>
 
+@*<style type="text/css">
+           #caja {
+           height: 30px;
+           }
+           #texto-left {
+           float: left;
+           }
+           #texto-rigth {
+           float: right;
+           }
+    </style >*@
 
 
-    

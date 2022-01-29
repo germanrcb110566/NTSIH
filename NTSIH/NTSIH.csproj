@@ -201,14 +201,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\DataTables\datatables.min.css" />
-    <Content Include="Content\images\calendar_blank.png" />
-    <Content Include="Content\images\ui-icons_444444_256x240.png" />
-    <Content Include="Content\images\ui-icons_555555_256x240.png" />
-    <Content Include="Content\images\ui-icons_777620_256x240.png" />
-    <Content Include="Content\images\ui-icons_777777_256x240.png" />
-    <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
-    <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery-ui.structure.css" />
@@ -241,7 +233,6 @@
       <DependentUpon>NTSIHModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\DataTables\datatables.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

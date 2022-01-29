@@ -191,10 +191,14 @@ namespace NTSIH.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.identificacion_tipo = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.identificacion_tipo);
-            ViewBag.genero = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.genero);
-            ViewBag.ciudad_residencia = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.ciudad_residencia);
-            ViewBag.nacionalidad = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.nacionalidad);
+            ViewBag.identificacion_tipo = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 1), "registro_id", "nombre");
+            ViewBag.genero = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 2), "registro_id", "nombre");
+            ViewBag.ciudad_residencia = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 8), "registro_id", "nombre");
+            ViewBag.nacionalidad = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 9), "registro_id", "nombre");
+            //ViewBag.identificacion_tipo = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.identificacion_tipo);
+            //ViewBag.genero = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.genero);
+            //ViewBag.ciudad_residencia = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.ciudad_residencia);
+            //ViewBag.nacionalidad = new SelectList(db.Catalogo, "registro_id", "nombre", mPersona.nacionalidad);
             return View(mPersona);
         }
 

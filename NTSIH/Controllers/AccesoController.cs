@@ -19,6 +19,7 @@ namespace NTSIH.Controllers
         {
             ViewBag.alerta = "info";
             ViewBag.mensaje = "Acceso al Sistema".ToUpper();
+            ViewBag.acceso = "SOLICITUD DE CREDENCIALES";
             ViewBag.layout = "~/Views/Shared/_Layout.cshtml";
             return View();
         }

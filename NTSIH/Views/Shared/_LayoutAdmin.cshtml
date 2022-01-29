@@ -5,14 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema Hospitalario</title>
-    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    
+    
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <script src="~/Scripts/bootstrap.js"></script>
-    <link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.dataTables.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -50,27 +45,35 @@
     <footer style="background-color: darkblue; color: white; text-align: center ">
         <br /><small>&copy; @DateTime.Now.Year  Todos los derechos reservados 2022 -      German Camacho B.</small><br />
     </footer>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script type="text/javascript" charset="utf-8" src="~/Scripts/DataTables/datatables.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="~/Scripts/jquery-ui.min.js"></script>
-    <script type="text/javascript">
+
+
+    
+    @*La siguiente instruccion es para el manejo de las fechas con calendarios*@
+    @*<script type="text/javascript">
         $(function () {
-            //$('#fecha_nacimiento').datepicker({
-            //    dateFormat: 'yy/mm/dd'
-            //    ,changeMonth: true
-            //    ,changeYear: true
-            //    //,minDate: new Date(1900, 0, 1)
-            //}).val();
+            
+            $('#fecha_nacimiento').datepicker({
+                dateFormat: 'yy/mm/dd',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1900, 1, 1)
+            }).val();
+            
         });
-    </script>
+    </script>*@
 </body>
 
 </html>
 
 
-<style type="text/css">
+@*<style type="text/css">
        #caja {
        height: 30px;
        }
@@ -80,5 +83,5 @@
        #texto-rigth {
        float: right;
        }
-</style >
+</style >*@
 

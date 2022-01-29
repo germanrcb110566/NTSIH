@@ -6832,11 +6832,12 @@ button.close {
   }
 }
 #caja {
-    height: 50px;
+    height: 15px;
 }
 
 #texto-left {
     float: left;
+    
 }
 
 #texto-rigth {

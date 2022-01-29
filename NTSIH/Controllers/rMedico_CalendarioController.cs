@@ -11,6 +11,7 @@ using NTSIH.Models;
 
 namespace NTSIH.Controllers
 {
+    [HandleError(View = "Error")]
     public class rMedico_CalendarioController : Controller
     {
         private SIHEntities db = new SIHEntities();
@@ -65,8 +66,19 @@ namespace NTSIH.Controllers
             if (ModelState.IsValid)
             {
                 db.rMedico_Calendario.Add(rMedico_Calendario);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    await db.SaveChangesAsync();
+
+                }
+                catch (Exception ex)
+                {
+                    throw new MiExcepciones("Error al Actualizar la Información:" + ex.Message);
+                    ViewBag.alerta = "alert";
+                    ViewBag.mensaje = ex.Message.ToString();
+                }
+                
+               // return RedirectToAction("Index");
             }
 
             ViewBag.calendario_id = new SelectList(db.mCalendario, "registro_id", "nombre", rMedico_Calendario.calendario_id);
