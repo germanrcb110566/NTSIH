@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="caja">
-    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.msgmodulo</b> - -</div>
     <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
 </div>
 <br />
@@ -20,9 +20,5 @@
 <br />
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
+<div id="msgerror" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta"><b>@ViewBag.error</b></div>

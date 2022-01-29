@@ -19,7 +19,8 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.msgmodulo = "Atención de Citas".ToUpper();
             ViewBag.layout = Session["Layout"];
             var mAtencion = db.mAtencion.Include(m => m.mCita);
             return View(await mAtencion.ToListAsync());
@@ -29,7 +30,8 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.msgmodulo = "Visualización de Atenciones a Paciente".ToUpper();
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -47,7 +49,8 @@ namespace NTSIH.Controllers
         public ActionResult Create()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.msgmodulo = "Atención a Paciente".ToUpper();
             ViewBag.layout = Session["Layout"];
             ViewBag.cita_id = new SelectList(db.mCita, "registro_id", "motivo");
             return View();
@@ -75,7 +78,8 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.msgmodulo = "Editar Atención de Paciente".ToUpper();
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -111,7 +115,8 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.msgmodulo = "Cancelación de Atención de Paciente".ToUpper();
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -139,7 +144,8 @@ namespace NTSIH.Controllers
         protected override void Dispose(bool disposing)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.msgmodulo = "DISPOSE".ToUpper();
             ViewBag.layout = Session["Layout"];
             if (disposing)
             {

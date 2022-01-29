@@ -28,13 +28,17 @@ namespace NTSIH.Models
                                   int Modulo_Id,
                                   string sentenciasql)
         {
+            if (sentenciasql == null)
+            {
+                sentenciasql = "NO SE RECIBIO SENTENCIA ";
+            }
             string retorno = "";
             string cadena = "'" + DateTime.Now + "',";
             cadena += Usuario_Id + ",";
             cadena += Rol_Id + ",";
             cadena += Modulo_Id + ",";
             cadena += "'" + sentenciasql.Replace("'", "#") + "'";
-
+            //cadena += "'" + sentenciasql.Replace("'", "#") + "'";
             try
             {
                 using (var conexion = new SIHEntities())

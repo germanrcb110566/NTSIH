@@ -21,7 +21,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             var mPersona = db.mPersona.Include(m => m.Catalogo).Include(m => m.Catalogo1).Include(m => m.Catalogo2).Include(m => m.Catalogo3);
             return View(await mPersona.ToListAsync());
@@ -31,7 +31,8 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.msgmodulo = Session["mensaje"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -49,7 +50,7 @@ namespace NTSIH.Controllers
         public ActionResult Create()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             ViewBag.identificacion_tipo = new SelectList(db.Catalogo.Where(d => d.catalogo_id==1), "registro_id", "nombre");
             ViewBag.genero = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 2), "registro_id", "nombre");
@@ -65,39 +66,42 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "registro_id,identificacion_tipo,identificacion,nombres,apellidos,direccion,telefono,celular,fecha_nacimiento,correo_electronico,genero,ciudad_residencia,nacionalidad,clave,estado")] mPersona mPersona)
         {
+            string Mensaje = null;
+            string Rol = null;
+            string SentenciaSQL = null;
             if (ModelState.IsValid)
             {
                 try
                 {
                     mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);
                 
-                db.mPersona.Add(mPersona);
-                await db.SaveChangesAsync();
-                string Mensaje = null;
-                string Rol = null;
-                string SentenciaSQL = "INSERT INTO RROL_PERSONA VALUES (" + mPersona.registro_id + ",10)";
+                    db.mPersona.Add(mPersona);
+                    await db.SaveChangesAsync();
+                    Mensaje = null;
+                    Rol = null;
+                    SentenciaSQL = "INSERT INTO RROL_PERSONA VALUES (" + mPersona.registro_id + ",10)";
 
-                try
-                {
-                    using (var conexion = new SIHEntities())
+                    try
                     {
+                        using (var conexion = new SIHEntities())
+                        {
 
-                        Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
-                        if (Rol != null)
-                        {
-                            Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
-                        }
-                        else
-                        {
-                            Mensaje = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
+                            Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
+                            if (Rol != null)
+                            {
+                                Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
+                            }
+                            else
+                            {
+                                Mensaje = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
+                            }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Mensaje = "0020" + ex.Message;
-                }
-                string Log = aud.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
+                    catch (Exception ex)
+                    {
+                        Mensaje = "0020" + ex.Message;
+                    }
+                    string Log = aud.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
 
                 }
                 catch (Exception ex)
@@ -119,7 +123,7 @@ namespace NTSIH.Controllers
         public ActionResult CreatePaciente()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             ViewBag.identificacion_tipo = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 1), "registro_id", "nombre");
             ViewBag.genero = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 2), "registro_id", "nombre");
@@ -135,37 +139,46 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreatePaciente([Bind(Include = "registro_id,identificacion_tipo,identificacion,nombres,apellidos,direccion,telefono,celular,fecha_nacimiento,correo_electronico,genero,ciudad_residencia,nacionalidad,clave,estado")] mPersona mPersona)
         {
+            string SentenciaSQL = null;         
+            string Rol = null;
             if (ModelState.IsValid)
             {
-                db.mPersona.Add(mPersona);
-                await db.SaveChangesAsync();
-                string Mensaje = null;
-                string Rol = null;
-                string SentenciaSQL = "INSERT INTO RROL_PERSONA VALUES (" + mPersona.registro_id + ",10)";
-
                 try
                 {
-                    using (var conexion = new SIHEntities())
+                    mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);
+                    db.mPersona.Add(mPersona);
+                    await db.SaveChangesAsync();
+                    
+                    SentenciaSQL = "INSERT INTO RROL_PERSONA VALUES (" + mPersona.registro_id + ",10)";
+
+                    try
                     {
-                        
-                        Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
-                        if (Rol != null)
+                        using (var conexion = new SIHEntities())
                         {
-                            Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
+
+                            Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
+                            if (Rol != null)
+                            {
+                                Session["mensaje"] = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
+                            }
+                            else
+                            {
+                                Session["mensaje"] = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
+                            }
                         }
-                        else
-                        {
-                            Mensaje = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Session["mensaje"] = "0020:ERROR AL GRABAR EN EL MÓDULO ROL_PERSONAS.  INFORMACION ADICIONAL:" + ex.Message;                     
                     }
                 }
                 catch (Exception ex)
                 {
-                    Mensaje = "0020" + ex.Message;
+                    Session["mensaje"] = "0020:ERROR AL GRABAR EN EL MÓDULO PERSONAS.  INFORMACION ADICIONAL:" + ex.Message;                 
+                    //throw new MiExcepciones(Mensaje);
                 }
+                
                 string Log = aud.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
-
-
 
                 return RedirectToAction("Index");
             }
@@ -180,7 +193,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -229,7 +242,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -257,7 +270,7 @@ namespace NTSIH.Controllers
         protected override void Dispose(bool disposing)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (disposing)
             {

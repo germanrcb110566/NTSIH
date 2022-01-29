@@ -19,7 +19,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
 
             //db.Catalogo.Where(d => d.catalogo_id == 1),
@@ -31,7 +31,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -49,7 +49,7 @@ namespace NTSIH.Controllers
         public ActionResult Create()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
 
             ViewBag.especialidad_id = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 6), "registro_id", "nombre");
@@ -85,7 +85,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
 
             if (id == null)
@@ -128,7 +128,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
 
             if (id == null)
@@ -157,7 +157,7 @@ namespace NTSIH.Controllers
         protected override void Dispose(bool disposing)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (disposing)
             {

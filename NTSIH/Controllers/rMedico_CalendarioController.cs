@@ -20,7 +20,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             //var rMedico_Calendario = db.rMedico_Calendario.Include(r => r.mCalendario).Include(r => r.mPersona);
             var rMedico_Calendario = db.rMedico_Calendario.Include(r => r.mPersona).Include(r => r.mCalendario);
@@ -31,7 +31,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -49,7 +49,7 @@ namespace NTSIH.Controllers
         public ActionResult Create()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             ViewBag.calendario_id = new SelectList(db.mCalendario, "registro_id", "nombre");
             ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion");
@@ -73,9 +73,7 @@ namespace NTSIH.Controllers
                 }
                 catch (Exception ex)
                 {
-                    throw new MiExcepciones("Error al Actualizar la Información:" + ex.Message);
-                    ViewBag.alerta = "alert";
-                    ViewBag.mensaje = ex.Message.ToString();
+                    throw new MiExcepciones("Error al Actualizar la Información:".ToUpper() + ex.Message.ToUpper());
                 }
                 
                // return RedirectToAction("Index");
@@ -90,7 +88,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -129,7 +127,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -157,7 +155,7 @@ namespace NTSIH.Controllers
         protected override void Dispose(bool disposing)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (disposing)
             {

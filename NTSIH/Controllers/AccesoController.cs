@@ -18,9 +18,18 @@ namespace NTSIH.Controllers
         public ActionResult Index()
         {
             ViewBag.alerta = "info";
-            ViewBag.mensaje = "Acceso al Sistema".ToUpper();
             ViewBag.acceso = "SOLICITUD DE CREDENCIALES";
             ViewBag.layout = "~/Views/Shared/_Layout.cshtml";
+            ViewBag.error = null;
+            Session["Layout"] = ViewBag.layout;
+            if (Session["error"] == null)
+            {
+                ViewBag.msgmodulo = "Acceso al Sistema".ToUpper();
+            }
+            else
+            {
+                ViewBag.error = Session["error"];
+            }
             return View();
         }
 
@@ -33,9 +42,9 @@ namespace NTSIH.Controllers
                 mPersona oUser = per.unRegistro(ref Mensaje, identificacion);
                 if (Mensaje.Substring(0, 4) != "0000")
                 {
-
                     ViewBag.alerta = "danger";
-                    ViewBag.res = Mensaje.Substring(4).ToUpper();
+                    ViewBag.error = Mensaje.Substring(4).ToUpper();
+                    Session["error"] = ViewBag.error;
                     return View();
                 }
                 int Persona_Id = oUser.registro_id;         //Se obtiene el numero de Id de la Persona que esta accediendo
@@ -43,7 +52,8 @@ namespace NTSIH.Controllers
                 if (Mensaje.Substring(0, 4) != "0000")
                 {
                     ViewBag.alerta = "danger";
-                    ViewBag.res = "Error: Persona no Tiene Asignado un ROL en e Sistema".ToUpper();
+                    ViewBag.error = "Error: Persona no Tiene Asignado un ROL en e Sistema".ToUpper();
+                    Session["error"]= ViewBag.error;
                     return View();
                 }
                 password = EncDecryptController.GetSHA256(password);
@@ -54,9 +64,9 @@ namespace NTSIH.Controllers
                     Session["Nombres"] = oUser.nombres;
                     Session["Rol"] = oRol;
                     ViewBag.alerta = "success";
-                    ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+                    ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+                    ViewBag.layout = "~/Views/Shared/_LayoutAdmin.cshtml";
                     Session["Layout"] = ViewBag.layout;
-                    ViewBag.Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
                     if (oRol == "PACIENTE")
                     {
                         ViewBag.layout = "~/Views/Shared/_LayoutPaciente.cshtml";                     
@@ -78,14 +88,18 @@ namespace NTSIH.Controllers
                 }
                 else
                 {
+                    ViewBag.layout = Session["Layout"];
                     ViewBag.alerta = "danger";
-                    ViewBag.res = "Error: Clave Ingresada NO es correcta".ToUpper();
+                    ViewBag.error = "Error: Clave Ingresada NO es correcta".ToUpper();
+                    Session["error"] = ViewBag.error;
                 }
             }
             catch (Exception ex)
             {
+                ViewBag.layout = Session["Layout"];
                 ViewBag.alerta = "danger";
-                ViewBag.res = "Error: ".ToUpper() + ex.Message.ToUpper();
+                ViewBag.error = "Error: ".ToUpper() + ex.Message.ToUpper();
+                Session["error"] = ViewBag.error;
             }
             return View();
         }
@@ -96,6 +110,9 @@ namespace NTSIH.Controllers
             Session["identificacion"] = null;
             Session["Rol"] = null;
             Session["Nombres"] = null;
+            ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
+            Session["Layout"] = ViewBag.layout;
+            Session["error"] = "";
             return View();
         }
     }

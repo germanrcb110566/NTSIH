@@ -19,9 +19,9 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
-            ViewBag.mensaje = "Index:Maestro de Catalogos".ToUpper();
+            ViewBag.msgmodulo = "Atributo de Catálogos".ToUpper();
 
             var catalogo = db.Catalogo.Include(c => c.mCatalogo);
             return View(await catalogo.ToListAsync());
@@ -31,7 +31,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Details(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -49,7 +49,7 @@ namespace NTSIH.Controllers
         public ActionResult Create()
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             ViewBag.catalogo_id = new SelectList(db.mCatalogo, "registro_id", "catalogo");
             return View();
@@ -77,7 +77,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Edit(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -113,7 +113,7 @@ namespace NTSIH.Controllers
         public async Task<ActionResult> Delete(int? id)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (id == null)
             {
@@ -141,7 +141,7 @@ namespace NTSIH.Controllers
         protected override void Dispose(bool disposing)
         {
             ViewBag.alerta = "success";
-            ViewBag.Acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             if (disposing)
             {

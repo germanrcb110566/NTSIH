@@ -5,7 +5,7 @@
     Layout = ViewBag.layout;
 }
 <div id="caja">
-    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.mensaje</b> - -</div>
+    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.msgmodulo</b> - -</div>
     <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
 </div>
 <br />
@@ -43,23 +43,22 @@
             @Html.DisplayNameFor(model => model.correo_electronico)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.clave)
+            @*@Html.DisplayNameFor(model => model.clave)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.estado)
         </th>
         <th>
-
-            @Html.DisplayNameFor(model => model.Catalogo.nombre)
+            @*@Html.DisplayNameFor(model => model.Catalogo.nombre)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Catalogo1.nombre)
+            @*@Html.DisplayNameFor(model => model.Catalogo1.nombre)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Catalogo2.nombre)
+            @*@Html.DisplayNameFor(model => model.Catalogo2.nombre)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Catalogo3.nombre)
+            @*@Html.DisplayNameFor(model => model.Catalogo3.nombre)*@
         </th>
         <th></th>
     </tr>
@@ -93,22 +92,27 @@
             </td>
             <td>
                 @Html.HiddenFor(modelItem => item.clave)
-                @Html.DisplayFor(modelItem => item.clave)
+                @*@Html.DisplayFor(modelItem => item.clave)*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.estado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Catalogo.nombre)
+
+                @Html.HiddenFor(modelItem => item.Catalogo.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo.nombre)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Catalogo1.nombre)
+                @Html.HiddenFor(modelItem => item.Catalogo1.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo1.nombre)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Catalogo2.nombre)
+                @Html.HiddenFor(modelItem => item.Catalogo2.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo2.nombre)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Catalogo3.nombre)
+                @Html.HiddenFor(modelItem => item.Catalogo3.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo3.nombre)*@
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
