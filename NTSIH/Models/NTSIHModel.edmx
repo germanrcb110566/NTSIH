@@ -121,6 +121,14 @@
           <Property Name="medico_id" Type="int" Nullable="false" />
           <Property Name="calendario_id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="rMedico_Especialidad">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="medico_id" Type="int" Nullable="false" />
+          <Property Name="especialidad_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="rRol_Persona">
           <Key>
             <PropertyRef Name="registro_id" />
@@ -309,6 +317,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_rMedico_Especialidad_Catalogo">
+          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
+          <End Role="rMedico_Especialidad" Type="Self.rMedico_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rMedico_Especialidad">
+              <PropertyRef Name="especialidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rMedico_Especialidad_mPersona">
+          <End Role="mPersona" Type="Self.mPersona" Multiplicity="1" />
+          <End Role="rMedico_Especialidad" Type="Self.rMedico_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPersona">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rMedico_Especialidad">
+              <PropertyRef Name="medico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_rRol_Persona_Catalogo">
           <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
           <End Role="rRol_Persona" Type="Self.rRol_Persona" Multiplicity="*" />
@@ -344,6 +376,7 @@
           <EntitySet Name="mPermisos" EntityType="Self.mPermisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mPersona" EntityType="Self.mPersona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rMedico_Calendario" EntityType="Self.rMedico_Calendario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rMedico_Especialidad" EntityType="Self.rMedico_Especialidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rRol_Persona" EntityType="Self.rRol_Persona" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Catalogo_mCatalogo" Association="Self.FK_Catalogo_mCatalogo">
             <End Role="mCatalogo" EntitySet="mCatalogo" />
@@ -404,6 +437,14 @@
           <AssociationSet Name="FK_rMedico_Calendario_mPersona" Association="Self.FK_rMedico_Calendario_mPersona">
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="rMedico_Calendario" EntitySet="rMedico_Calendario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rMedico_Especialidad_Catalogo" Association="Self.FK_rMedico_Especialidad_Catalogo">
+            <End Role="Catalogo" EntitySet="Catalogo" />
+            <End Role="rMedico_Especialidad" EntitySet="rMedico_Especialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rMedico_Especialidad_mPersona" Association="Self.FK_rMedico_Especialidad_mPersona">
+            <End Role="mPersona" EntitySet="mPersona" />
+            <End Role="rMedico_Especialidad" EntitySet="rMedico_Especialidad" />
           </AssociationSet>
           <AssociationSet Name="FK_rRol_Persona_Catalogo" Association="Self.FK_rRol_Persona_Catalogo">
             <End Role="Catalogo" EntitySet="Catalogo" />
@@ -500,6 +541,15 @@
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="rRol_Persona" EntitySet="rRol_Persona" />
           </AssociationSet>
+          <EntitySet Name="rMedico_Especialidad" EntityType="SIHModel.rMedico_Especialidad" />
+          <AssociationSet Name="FK_rMedico_Especialidad_Catalogo" Association="SIHModel.FK_rMedico_Especialidad_Catalogo">
+            <End Role="Catalogo" EntitySet="Catalogo" />
+            <End Role="rMedico_Especialidad" EntitySet="rMedico_Especialidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rMedico_Especialidad_mPersona" Association="SIHModel.FK_rMedico_Especialidad_mPersona">
+            <End Role="mPersona" EntitySet="mPersona" />
+            <End Role="rMedico_Especialidad" EntitySet="rMedico_Especialidad" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_ListarMedicos_Result">
           <Property Type="Int32" Name="registro_id" Nullable="false" />
@@ -554,6 +604,7 @@
           <NavigationProperty Name="mPersona2" Relationship="SIHModel.FK_mPersona_Catalogo2" FromRole="Catalogo" ToRole="mPersona" />
           <NavigationProperty Name="mPersona3" Relationship="SIHModel.FK_mPersona_Catalogo3" FromRole="Catalogo" ToRole="mPersona" />
           <NavigationProperty Name="rRol_Persona" Relationship="SIHModel.FK_rRol_Persona_Catalogo" FromRole="Catalogo" ToRole="rRol_Persona" />
+          <NavigationProperty Name="rMedico_Especialidad" Relationship="SIHModel.FK_rMedico_Especialidad_Catalogo" FromRole="Catalogo" ToRole="rMedico_Especialidad" />
         </EntityType>
         <EntityType Name="mAtencion">
           <Key>
@@ -672,6 +723,7 @@
           <NavigationProperty Name="mCita1" Relationship="SIHModel.FK_mCita_mPersona1" FromRole="mPersona" ToRole="mCita" />
           <NavigationProperty Name="rMedico_Calendario" Relationship="SIHModel.FK_rMedico_Calendario_mPersona" FromRole="mPersona" ToRole="rMedico_Calendario" />
           <NavigationProperty Name="rRol_Persona" Relationship="SIHModel.FK_rRolPersona_mPersonas" FromRole="mPersona" ToRole="rRol_Persona" />
+          <NavigationProperty Name="rMedico_Especialidad" Relationship="SIHModel.FK_rMedico_Especialidad_mPersona" FromRole="mPersona" ToRole="rMedico_Especialidad" />
         </EntityType>
         <EntityType Name="rMedico_Calendario">
           <Key>
@@ -897,6 +949,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="rMedico_Especialidad">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="medico_id" Type="Int32" Nullable="false" />
+          <Property Name="especialidad_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Catalogo" Relationship="SIHModel.FK_rMedico_Especialidad_Catalogo" FromRole="rMedico_Especialidad" ToRole="Catalogo" />
+          <NavigationProperty Name="mPersona" Relationship="SIHModel.FK_rMedico_Especialidad_mPersona" FromRole="rMedico_Especialidad" ToRole="mPersona" />
+        </EntityType>
+        <Association Name="FK_rMedico_Especialidad_Catalogo">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.rMedico_Especialidad" Role="rMedico_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rMedico_Especialidad">
+              <PropertyRef Name="especialidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rMedico_Especialidad_mPersona">
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="1" />
+          <End Type="SIHModel.rMedico_Especialidad" Role="rMedico_Especialidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPersona">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rMedico_Especialidad">
+              <PropertyRef Name="medico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1034,6 +1120,15 @@
               <MappingFragment StoreEntitySet="rRol_Persona">
                 <ScalarProperty Name="rol_id" ColumnName="rol_id" />
                 <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rMedico_Especialidad">
+            <EntityTypeMapping TypeName="SIHModel.rMedico_Especialidad">
+              <MappingFragment StoreEntitySet="rMedico_Especialidad">
+                <ScalarProperty Name="especialidad_id" ColumnName="especialidad_id" />
+                <ScalarProperty Name="medico_id" ColumnName="medico_id" />
                 <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -27,6 +27,7 @@ namespace NTSIH.Models
             this.mPersona2 = new HashSet<mPersona>();
             this.mPersona3 = new HashSet<mPersona>();
             this.rRol_Persona = new HashSet<rRol_Persona>();
+            this.rMedico_Especialidad = new HashSet<rMedico_Especialidad>();
         }
         private mAuditoria aud = new mAuditoria();
         public int registro_id { get; set; }
@@ -56,7 +57,9 @@ namespace NTSIH.Models
         public virtual ICollection<mPersona> mPersona3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<rMedico_Especialidad> rMedico_Especialidad { get; set; }
 
-        
+
     }
 }

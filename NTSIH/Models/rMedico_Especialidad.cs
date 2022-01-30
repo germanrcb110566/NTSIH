@@ -12,15 +12,13 @@ namespace NTSIH.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class mAuditoria
+    public partial class rMedico_Especialidad
     {
         public int registro_id { get; set; }
-        public System.DateTime fecha { get; set; }
-        public int usuario_id { get; set; }
-        public int rol_id { get; set; }
-        public int modulo_id { get; set; }
-        public string sentencia { get; set; }
+        public int medico_id { get; set; }
+        public int especialidad_id { get; set; }
     
+        public virtual Catalogo Catalogo { get; set; }
         public virtual mPersona mPersona { get; set; }
     }
 }

@@ -24,6 +24,7 @@ namespace NTSIH.Models
             this.mCita1 = new HashSet<mCita>();
             this.rMedico_Calendario = new HashSet<rMedico_Calendario>();
             this.rRol_Persona = new HashSet<rRol_Persona>();
+            this.rMedico_Especialidad = new HashSet<rMedico_Especialidad>();
         }
     
         public int registro_id { get; set; }
@@ -114,7 +115,9 @@ namespace NTSIH.Models
         public virtual ICollection<rMedico_Calendario> rMedico_Calendario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<rMedico_Especialidad> rMedico_Especialidad { get; set; }
 
-        
+
     }
 }

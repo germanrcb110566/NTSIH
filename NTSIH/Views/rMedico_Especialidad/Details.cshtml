@@ -1,0 +1,39 @@
+﻿@model NTSIH.Models.rMedico_Especialidad
+
+@{
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+    Layout = ViewBag.layout;
+}
+<div id="caja">
+    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.msgmodulo</b> - -</div>
+    <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
+</div>
+<br />
+<br />
+<br />
+<div>
+    <h4>rMedico_Especialidad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Catalogo.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catalogo.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mPersona.identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mPersona.identificacion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.registro_id }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

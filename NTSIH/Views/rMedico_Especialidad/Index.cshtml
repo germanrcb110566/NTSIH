@@ -1,10 +1,9 @@
-﻿@model IEnumerable<NTSIH.Models.mParametros>
+﻿@model IEnumerable<NTSIH.Models.rMedico_Especialidad>
 
 @{
     ViewBag.Title = "Sistema Hospitalario En Línea";
     Layout = ViewBag.layout;
 }
-
 <div id="caja">
     <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.msgmodulo</b> - -</div>
     <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
@@ -12,26 +11,16 @@
 <br />
 <br />
 <br />
-
 <p>
-    @Html.ActionLink("Crear nuevo registro", "Create")
+    @Html.ActionLink("Crear Nuevo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.smtpserver)
+            @Html.DisplayNameFor(model => model.Catalogo.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.smtppuerto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo_sistema)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.clave_correo)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
+            @Html.DisplayNameFor(model => model.mPersona.identificacion)
         </th>
         <th></th>
     </tr>
@@ -40,19 +29,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.smtpserver)
+                @Html.DisplayFor(modelItem => item.Catalogo.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.smtppuerto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.correo_sistema)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.clave_correo)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
+                @Html.DisplayFor(modelItem => item.mPersona.identificacion)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
@@ -63,5 +43,3 @@
     }
 
 </table>
-
-

@@ -141,6 +141,7 @@
     <Compile Include="Controllers\mPermisosController.cs" />
     <Compile Include="Controllers\mPersonasController.cs" />
     <Compile Include="Controllers\rMedico_CalendarioController.cs" />
+    <Compile Include="Controllers\rMedico_EspecialidadController.cs" />
     <Compile Include="Controllers\rRol_PersonaController.cs" />
     <Compile Include="Filtros\clsSesiones.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,6 +190,9 @@
       <DependentUpon>NTSIHModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\rMedico_Calendario.cs">
+      <DependentUpon>NTSIHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rMedico_Especialidad.cs">
       <DependentUpon>NTSIHModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\rRol_Persona.cs">
@@ -334,6 +338,11 @@
     <Content Include="Views\Home\IndexAdmin.cshtml" />
     <Content Include="Views\Home\IndexGestion.cshtml" />
     <Content Include="Views\Home\IndexMedico.cshtml" />
+    <Content Include="Views\rMedico_Especialidad\Create.cshtml" />
+    <Content Include="Views\rMedico_Especialidad\Delete.cshtml" />
+    <Content Include="Views\rMedico_Especialidad\Details.cshtml" />
+    <Content Include="Views\rMedico_Especialidad\Edit.cshtml" />
+    <Content Include="Views\rMedico_Especialidad\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
