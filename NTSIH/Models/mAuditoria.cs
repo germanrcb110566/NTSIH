@@ -23,40 +23,7 @@ namespace NTSIH.Models
     
         public virtual mPersona mPersona { get; set; }
 
-        public string InsertarLog(int Usuario_Id,
-                                  int Rol_Id,
-                                  int Modulo_Id,
-                                  string sentenciasql)
-        {
-            if (sentenciasql == null)
-            {
-                sentenciasql = "NO SE RECIBIO SENTENCIA ";
-            }
-            string retorno = "";
-            string cadena = "'" + DateTime.Now + "',";
-            cadena += Usuario_Id + ",";
-            cadena += Rol_Id + ",";
-            cadena += Modulo_Id + ",";
-            cadena += "'" + sentenciasql.Replace("'", "#") + "'";
-            //cadena += "'" + sentenciasql.Replace("'", "#") + "'";
-            try
-            {
-                using (var conexion = new SIHEntities())
-                {
-                    string sentenciaSQL = "INSERT INTO mAuditoria VALUES (" + cadena + ")";
-                    int st = conexion.Database.ExecuteSqlCommand(sentenciaSQL);
-                    if (st == 1)
-                    {
-                        retorno = "0000REGISTRO CREADO EXITOSAMENTE";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                retorno = "0010" + ex.Message;
-            }
-            return retorno;
-        }
+        
 
 
 

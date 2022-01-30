@@ -99,12 +99,12 @@ namespace NTSIH.Controllers
                     {
                         Session["error"] = "0020" + ex.Message;
                     }
-                    string Log = aud.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
+                    string Log = EncDecryptController.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
 
                 }
                 catch (Exception ex)
                 {
-                    string Log = aud.InsertarLog(1, 10, 1, ex.Message);
+                    string Log = EncDecryptController.InsertarLog(1, 10, 1, ex.Message);
                 }
                 Session["error"] = "0001:Error en la estructrura de los datos".ToUpper();
                 return RedirectToAction("Index");
@@ -176,7 +176,7 @@ namespace NTSIH.Controllers
                     //throw new MiExcepciones(Mensaje);
                 }
                 
-                string Log = aud.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
+                string Log = EncDecryptController.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
 
                 return RedirectToAction("Index");
             }

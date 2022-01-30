@@ -115,55 +115,6 @@ namespace NTSIH.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
 
-        public mPersona unRegistro(ref string Mensaje, string Identificacion)
-        {
-            var registro = new mPersona();
-            try
-            {
-                using (var conexion = new SIHEntities())
-                {
-                    registro = conexion.mPersona.Where(a => a.identificacion == Identificacion).Single();
-                    Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE"; 
-                }
-            }
-            catch (Exception ex)
-            {
-                Mensaje = "0010PERSONA NO ESTA REGISTRADA EN EL SISTEMA.  Información adicional:".ToUpper() + ex.Message;
-
-            }
-            return registro;
-        }
-        public string ObtenerRol(ref string Mensaje, string registro_id)
-        {
-            string Rol = null;
-            string SentenciaSQL = "select nombre from catalogo where  registro_id in (";
-            SentenciaSQL += "select rol_id from rrol_Persona where persona_id in ";
-            SentenciaSQL += "(select registro_id from mPersona where identificacion='" + registro_id + "')";
-            SentenciaSQL += ") order by descripcion asc";
-
-            try
-            {
-                using (var conexion = new SIHEntities())
-                {
-                    // var studentName = ctx.Students.SqlQuery("Select * from Courses").ToList();
-                    // string studentName = ctx.Database.SqlQuery<string>("Select studentname from Student where studentid=1").FirstOrDefault();
-
-                    Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
-                    if (Rol != null)
-                    {
-                        Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
-                    }
-                    else
-                    {
-                        Mensaje = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Mensaje = "0020Error no controlado.  Informacion adicional:".ToUpper() + ex.Message;
-            }
-            return Rol;
-        }
+        
     }
 }

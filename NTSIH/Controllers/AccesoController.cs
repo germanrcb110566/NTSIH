@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NTSIH.Models;
+using NTSIH.Controllers;
 
 namespace NTSIH.Controllers
 {
@@ -39,7 +40,7 @@ namespace NTSIH.Controllers
             try
             {
                 string Mensaje = "";
-                mPersona oUser = per.unRegistro(ref Mensaje, identificacion);
+                mPersona oUser = EncDecryptController.unRegistro(ref Mensaje, identificacion);
                 if (Mensaje.Substring(0, 4) != "0000")
                 {
                     ViewBag.alerta = "danger";
@@ -48,7 +49,7 @@ namespace NTSIH.Controllers
                     return View();
                 }
                 int Persona_Id = oUser.registro_id;         //Se obtiene el numero de Id de la Persona que esta accediendo
-                string oRol = cat.ObtenerRol(ref Mensaje, identificacion, Persona_Id );
+                string oRol = EncDecryptController.ObtenerRol(ref Mensaje, identificacion, Persona_Id );
                 if (Mensaje.Substring(0, 4) != "0000")
                 {
                     ViewBag.alerta = "danger";

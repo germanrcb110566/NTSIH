@@ -57,44 +57,6 @@ namespace NTSIH.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
 
-        public string ObtenerRol(ref string Mensaje, string Persona_Id, int Registro_id)
-        {
-            int Rol_Id = 0;
-            string Rol = null;
-            string SentenciaSQL = "select nombre from catalogo where  registro_id in (";
-            SentenciaSQL += "select rol_id from rrol_Persona where persona_id in ";
-            SentenciaSQL += "(select registro_id from mPersona where identificacion='" + Persona_Id + "')";
-            SentenciaSQL += ") order by descripcion asc";
-            string SentenciaSQL2 = "select registro_id from catalogo where  registro_id in (";
-            SentenciaSQL2 += "select  rol_id  from rrol_Persona where persona_id in ";
-            SentenciaSQL2 += "(select registro_id from mPersona where identificacion='" + Persona_Id + "')";
-            SentenciaSQL2 += ") order by descripcion asc";
-
-            try
-            {
-                using (var conexion = new SIHEntities())
-                {
-                    // var studentName = ctx.Students.SqlQuery("Select * from Courses").ToList();
-                    // string studentName = ctx.Database.SqlQuery<string>("Select studentname from Student where studentid=1").FirstOrDefault();
-
-                    Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
-                    if (Rol != null)
-                    {
-                        Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
-                        Rol_Id = Convert.ToInt32(conexion.Database.SqlQuery<int>(SentenciaSQL2).FirstOrDefault());
-                    }
-                    else
-                    {
-                        Mensaje = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Mensaje = "0020" + ex.Message;
-            }
-            string Log = aud.InsertarLog(Registro_id, Convert.ToInt32(Rol_Id), 1, SentenciaSQL);
-            return Rol;
-        }
+        
     }
 }

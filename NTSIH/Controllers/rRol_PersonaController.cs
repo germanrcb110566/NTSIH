@@ -49,7 +49,7 @@ namespace NTSIH.Controllers
             ViewBag.alerta = "success";
             ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre");
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x =>x.catalogo_id==4), "registro_id", "nombre");
             ViewBag.persona_id = new SelectList(db.mPersona, "registro_id", "identificacion");
             return View();
         }
@@ -83,7 +83,17 @@ namespace NTSIH.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            rRol_Persona rRol_Persona = await db.rRol_Persona.FindAsync(id);
+            rRol_Persona rRol_Persona = null;
+            try
+            {
+                 rRol_Persona = await db.rRol_Persona.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                string xx = ex.Message;
+                throw;
+            }
+            
             if (rRol_Persona == null)
             {
                 return HttpNotFound();
