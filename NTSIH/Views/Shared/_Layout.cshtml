@@ -41,24 +41,24 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-
-
-
-    @*<script type="text/javascript">
-            $(function () {
-                $('#fecha_nacimiento').datepicker({
-                    dateFormat: 'yy/mm/dd',
-                    changeMonth: true,
-                    changeYear: true,
-                    minDate: new Date(1900, 0, 1)
-                }).val();
-            });
-        </script>*@
+    <script src="~/Scripts/bootstrap.js"></script>
 
 
 </body>
 
 </html>
+
+@*<script type="text/javascript">
+        $(function () {
+            $('#fecha_nacimiento').datepicker({
+                dateFormat: 'yy/mm/dd',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1900, 0, 1)
+            }).val();
+        });
+    </script>*@
+
 
 @*<style type="text/css">
            #caja {

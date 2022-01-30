@@ -327,7 +327,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_Layout - Copia.cshtml" />
     <Content Include="Views\Shared\_LayoutMedico.cshtml" />
-    <Content Include="Views\Shared\_LayoutAsistentes.cshtml" />
+    <Content Include="Views\Shared\_LayoutGestion.cshtml" />
     <Content Include="Views\Shared\_LayoutPaciente.cshtml" />
     <Content Include="Views\mPersonas\CreatePaciente.cshtml" />
     <Content Include="Views\Home\IndexPaciente.cshtml" />

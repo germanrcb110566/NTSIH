@@ -5,8 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema Hospitalario</title>
-    
-    
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -45,43 +43,40 @@
     <footer style="background-color: darkblue; color: white; text-align: center ">
         <br /><small>&copy; @DateTime.Now.Year  Todos los derechos reservados 2022 -      German Camacho B.</small><br />
     </footer>
-
     <script src="~/Scripts/bootstrap.js"></script>
-
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
 
-    
-    @*La siguiente instruccion es para el manejo de las fechas con calendarios*@
-    @*<script type="text/javascript">
+
+
+</body>
+
+</html>
+
+@*La siguiente instruccion es para el manejo de las fechas con calendarios*@
+@*<script type="text/javascript">
         $(function () {
-            
+
             $('#fecha_nacimiento').datepicker({
                 dateFormat: 'yy/mm/dd',
                 changeMonth: true,
                 changeYear: true,
                 minDate: new Date(1900, 1, 1)
             }).val();
-            
+
         });
     </script>*@
-</body>
-
-</html>
-
-
 @*<style type="text/css">
-       #caja {
-       height: 30px;
-       }
-       #texto-left {
-       float: left;
-       }
-       #texto-rigth {
-       float: right;
-       }
-</style >*@
+           #caja {
+           height: 30px;
+           }
+           #texto-left {
+           float: left;
+           }
+           #texto-rigth {
+           float: right;
+           }
+    </style >*@
 

@@ -76,9 +76,9 @@ namespace NTSIH.Controllers
                     {
                         ViewBag.layout = "~/Views/Shared/_LayoutAdmin.cshtml";                
                     }
-                    if (oRol == "AUXILIAR" && oRol == "SECRETARIA" && oRol == "SERVICIOS GENERALES")
+                    if (oRol == "AUXILIAR" || oRol == "SECRETARIA" || oRol == "SERVICIOS GENERALES")
                     {
-                        ViewBag.layout = "~/Views/Shared/_LayoutAsistente.cshtml";                  
+                        ViewBag.layout = "~/Views/Shared/_LayoutGestion.cshtml";                  
                     }
                     if (oRol == "MÉDICO")
                     {

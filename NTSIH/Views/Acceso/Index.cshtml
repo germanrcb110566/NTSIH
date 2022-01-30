@@ -54,25 +54,29 @@
         $.post(url, parametros, function (data) {
             if (data == "PACIENTE") {
                 document.location.href = "@Url.Content("~/Home/IndexPaciente")"
-            }
-            else {
-                    if (data == "ADMINISTRADOR") {
-                document.location.href = "@Url.Content("~/Home/IndexAdmin")"
-            }
-            else {
+            } else {
+                if (data == "ADMINISTRADOR") {
+                    document.location.href = "@Url.Content("~/Home/IndexAdmin")"
+                } else {
                     if (data == "GESTION") {
-                document.location.href = "@Url.Content("~/Home/IndexAsistentes")"
+                        document.location.href = "@Url.Content("~/Home/IndexGestion")"
+                    } else {
+                        if (data == "MEDICO") {
+                            document.location.href = "@Url.Content("~/Home/IndexMedico")"
+                        } else {
+                            if (data == "SERVICIOS GENERALES") {
+                                document.location.href = "@Url.Content("~/Home/IndexGestion")"
+                            } else {
+                                if (data == "AUXILIAR") {
+                                    document.location.href = "@Url.Content("~/Home/IndexGestion")"
+                                }else {
+                                        document.location.href = "@Url.Content("~/")"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            else {
-                     if (data == "MEDICO") {
-                document.location.href = "@Url.Content("~/Home/IndexMedico")"
-            }
-            else {
-                    document.location.href = "@Url.Content("~/")"
-                 }
-                 }
-                 }
-                 }
             })
         })
     })

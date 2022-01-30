@@ -5,7 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema Hospitalario</title>
-    
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -35,19 +37,20 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    
-    <script type="text/javascript">
-        $(function () {
-            $('#fecha_nacimiento').datepicker({
-                dateFormat: 'yy/mm/dd',
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date(1900, 0, 1)
-            }).val();
-        });
-    </script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+
 </body>
 
 </html>
-
+@*<script type="text/javascript">
+    $(function () {
+        $('#fecha_nacimiento').datepicker({
+            dateFormat: 'yy/mm/dd',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1900, 0, 1)
+        }).val();
+    });
+</script>*@
 
