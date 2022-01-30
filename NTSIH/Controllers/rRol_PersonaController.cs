@@ -21,7 +21,8 @@ namespace NTSIH.Controllers
             ViewBag.alerta = "success";
             ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
-            var rRol_Persona = db.rRol_Persona.Include(r => r.Catalogo).Include(r => r.mPersona);
+            var rRol_Persona = db.rRol_Persona.Include(r => r.Catalogo).Where(x => x.Catalogo.catalogo_id == 4 && x.Catalogo.registro_id != 10).Include(r => r.mPersona);
+            //.Where(x => x.catalogo_id == 4 && x.registro_id != 10)
             return View(await rRol_Persona.ToListAsync());
         }
 
@@ -49,7 +50,8 @@ namespace NTSIH.Controllers
             ViewBag.alerta = "success";
             ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
-            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x =>x.catalogo_id==4), "registro_id", "nombre");
+            //ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 4 ), "registro_id", "nombre");
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x =>x.catalogo_id==4 && x.registro_id != 10), "registro_id", "nombre");
             ViewBag.persona_id = new SelectList(db.mPersona, "registro_id", "identificacion");
             return View();
         }
@@ -68,7 +70,8 @@ namespace NTSIH.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", rRol_Persona.rol_id);
+            //ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", rRol_Persona.rol_id);
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 4 && x.registro_id != 10), "registro_id", "nombre", rRol_Persona.rol_id);
             ViewBag.persona_id = new SelectList(db.mPersona, "registro_id", "identificacion", rRol_Persona.persona_id);
             return View(rRol_Persona);
         }
@@ -98,7 +101,8 @@ namespace NTSIH.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", rRol_Persona.rol_id);
+            //ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", rRol_Persona.rol_id);
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 4 && x.registro_id != 10), "registro_id", "nombre", rRol_Persona.rol_id);
             ViewBag.persona_id = new SelectList(db.mPersona, "registro_id", "identificacion", rRol_Persona.persona_id);
             return View(rRol_Persona);
         }
@@ -116,7 +120,8 @@ namespace NTSIH.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", rRol_Persona.rol_id);
+            //ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", rRol_Persona.rol_id);
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 4 && x.registro_id != 10), "registro_id", "nombre", rRol_Persona.rol_id);
             ViewBag.persona_id = new SelectList(db.mPersona, "registro_id", "identificacion", rRol_Persona.persona_id);
             return View(rRol_Persona);
         }

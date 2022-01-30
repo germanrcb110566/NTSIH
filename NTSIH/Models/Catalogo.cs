@@ -11,6 +11,7 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
 
     public partial class Catalogo
@@ -32,7 +33,13 @@ namespace NTSIH.Models
         private mAuditoria aud = new mAuditoria();
         public int registro_id { get; set; }
         public int catalogo_id { get; set; }
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [StringLength(100, MinimumLength = 2)]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "SOLO SE PERMITE LETRAS y NÚMEROS")]
         public string nombre { get; set; }
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [StringLength(100, MinimumLength = 2)]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "SOLO SE PERMITE LETRAS y NÚMEROS")]
         public string descripcion { get; set; }
         public bool estado { get; set; }
     
