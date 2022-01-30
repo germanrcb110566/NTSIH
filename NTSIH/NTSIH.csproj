@@ -194,6 +194,12 @@
     <Compile Include="Models\rRol_Persona.cs">
       <DependentUpon>NTSIHModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_ListarMedicos_Result.cs">
+      <DependentUpon>NTSIHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_ListarPacientes_Result.cs">
+      <DependentUpon>NTSIHModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SIHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SIHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Catalogo">
           <Key>
             <PropertyRef Name="registro_id" />
@@ -110,7 +110,7 @@
           <Property Name="genero" Type="int" Nullable="false" />
           <Property Name="ciudad_residencia" Type="int" Nullable="false" />
           <Property Name="nacionalidad" Type="int" Nullable="false" />
-          <Property Name="clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="rMedico_Calendario">
@@ -335,6 +335,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_ListarMedicos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_ListarPacientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SIHModelStoreContainer">
           <EntitySet Name="Catalogo" EntityType="Self.Catalogo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mAtencion" EntityType="Self.mAtencion" Schema="dbo" store:Type="Tables" />
@@ -416,8 +418,7 @@
             <End Role="rRol_Persona" EntitySet="rRol_Persona" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -547,7 +548,7 @@
           <Property Name="genero" Type="Int32" Nullable="false" />
           <Property Name="ciudad_residencia" Type="Int32" Nullable="false" />
           <Property Name="nacionalidad" Type="Int32" Nullable="false" />
-          <Property Name="clave" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="clave" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Catalogo" Relationship="Self.FK_mPersona_Catalogo" FromRole="mPersona" ToRole="Catalogo" />
           <NavigationProperty Name="Catalogo1" Relationship="Self.FK_mPersona_Catalogo1" FromRole="mPersona" ToRole="Catalogo" />
@@ -865,7 +866,43 @@
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="rRol_Persona" EntitySet="rRol_Persona" />
           </AssociationSet>
+          <FunctionImport Name="sp_ListarMedicos" ReturnType="Collection(SIHModel.sp_ListarMedicos_Result)" />
+          <FunctionImport Name="sp_ListarPacientes" ReturnType="Collection(SIHModel.sp_ListarPacientes_Result)" />
         </EntityContainer>
+        <ComplexType Name="sp_ListarMedicos_Result">
+          <Property Type="Int32" Name="registro_id" Nullable="false" />
+          <Property Type="Int32" Name="identificacion_tipo" Nullable="false" />
+          <Property Type="String" Name="identificacion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nombres" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="celular" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="fecha_nacimiento" Nullable="false" Precision="23" />
+          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="genero" Nullable="false" />
+          <Property Type="Int32" Name="ciudad_residencia" Nullable="false" />
+          <Property Type="Int32" Name="nacionalidad" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="false" MaxLength="1024" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_ListarPacientes_Result">
+          <Property Type="Int32" Name="registro_id" Nullable="false" />
+          <Property Type="Int32" Name="identificacion_tipo" Nullable="false" />
+          <Property Type="String" Name="identificacion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="nombres" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="celular" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="fecha_nacimiento" Nullable="false" Precision="23" />
+          <Property Type="String" Name="correo_electronico" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="genero" Nullable="false" />
+          <Property Type="Int32" Name="ciudad_residencia" Nullable="false" />
+          <Property Type="Int32" Name="nacionalidad" Nullable="false" />
+          <Property Type="String" Name="clave" Nullable="false" MaxLength="1024" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1007,6 +1044,48 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_ListarMedicos" FunctionName="SIHModel.Store.sp_ListarMedicos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIHModel.sp_ListarMedicos_Result">
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
+                <ScalarProperty Name="identificacion_tipo" ColumnName="identificacion_tipo" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="ciudad_residencia" ColumnName="ciudad_residencia" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ListarPacientes" FunctionName="SIHModel.Store.sp_ListarPacientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SIHModel.sp_ListarPacientes_Result">
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
+                <ScalarProperty Name="identificacion_tipo" ColumnName="identificacion_tipo" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="ciudad_residencia" ColumnName="ciudad_residencia" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

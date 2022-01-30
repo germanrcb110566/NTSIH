@@ -22,7 +22,8 @@ namespace NTSIH.Controllers
             ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.msgmodulo = "Atención de Citas".ToUpper();
             ViewBag.layout = Session["Layout"];
-            var mAtencion = db.mAtencion.Include(m => m.mCita);
+            var mAtencion = db.mAtencion.OrderBy(m => m.mCita.fecha).Include(m => m.mCita);
+            
             return View(await mAtencion.ToListAsync());
         }
 

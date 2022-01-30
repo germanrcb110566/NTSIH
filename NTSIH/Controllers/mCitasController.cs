@@ -52,10 +52,23 @@ namespace NTSIH.Controllers
             ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
 
+            
+            
             ViewBag.especialidad_id = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 6), "registro_id", "nombre");
             ViewBag.registro_id = new SelectList(db.mAtencion, "cita_id", "diagnostico");
-            ViewBag.paciente_id = new SelectList(db.mPersona, "registro_id", "identificacion", "Nombres");
-            ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion");
+
+            //select* from rRol_Persona a
+            //join mPersona b on a.persona_id = b.registro_id
+            //where a.rol_id = 10
+            ViewBag.paciente_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 10).Select(x => x.mPersona), "registro_id", "nombres");
+
+            //select* from rRol_Persona a
+            //join mPersona b on a.persona_id = b.registro_id
+            //where a.rol_id = 15
+            ViewBag.medico_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 15).Select(x => x.mPersona), "registro_id", "nombres");
+
+
+
             return View();
         }
 
@@ -73,10 +86,10 @@ namespace NTSIH.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.especialidad_id = new SelectList(db.Catalogo, "registro_id", "nombre", mCita.especialidad_id);
+            ViewBag.especialidad_id = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 6), "registro_id", "nombre", mCita.especialidad_id);
             ViewBag.registro_id = new SelectList(db.mAtencion, "cita_id", "diagnostico", mCita.registro_id);
-            ViewBag.paciente_id = new SelectList(db.mPersona, "registro_id", "identificacion", mCita.paciente_id);
-            ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion", mCita.medico_id);
+            ViewBag.paciente_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 10).Select(x => x.mPersona), "registro_id", "nombres", mCita.paciente_id);
+            ViewBag.medico_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 15).Select(x => x.mPersona), "registro_id", "nombres", mCita.medico_id);
             return View(mCita);
         }
 
@@ -96,10 +109,10 @@ namespace NTSIH.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.especialidad_id = new SelectList(db.Catalogo, "registro_id", "nombre", mCita.especialidad_id);
+            ViewBag.especialidad_id = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 6), "registro_id", "nombre", mCita.especialidad_id);
             ViewBag.registro_id = new SelectList(db.mAtencion, "cita_id", "diagnostico", mCita.registro_id);
-            ViewBag.paciente_id = new SelectList(db.mPersona, "registro_id", "identificacion", mCita.paciente_id);
-            ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion", mCita.medico_id);
+            ViewBag.paciente_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 10).Select(x => x.mPersona), "registro_id", "nombres", mCita.paciente_id);
+            ViewBag.medico_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 15).Select(x => x.mPersona), "registro_id", "nombres", mCita.medico_id);
             return View(mCita);
         }
 
@@ -116,10 +129,10 @@ namespace NTSIH.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.especialidad_id = new SelectList(db.Catalogo, "registro_id", "nombre", mCita.especialidad_id);
+            ViewBag.especialidad_id = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 6), "registro_id", "nombre", mCita.especialidad_id);
             ViewBag.registro_id = new SelectList(db.mAtencion, "cita_id", "diagnostico", mCita.registro_id);
-            ViewBag.paciente_id = new SelectList(db.mPersona, "registro_id", "identificacion", mCita.paciente_id);
-            ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion", mCita.medico_id);
+            ViewBag.paciente_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 10).Select(x => x.mPersona), "registro_id", "nombres", mCita.paciente_id);
+            ViewBag.medico_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 15).Select(x => x.mPersona), "registro_id", "nombres", mCita.medico_id);
             return View(mCita);
         }
 

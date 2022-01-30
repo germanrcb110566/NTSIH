@@ -12,6 +12,8 @@ namespace NTSIH.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SIHEntities : DbContext
     {
@@ -36,5 +38,15 @@ namespace NTSIH.Models
         public virtual DbSet<mPersona> mPersona { get; set; }
         public virtual DbSet<rMedico_Calendario> rMedico_Calendario { get; set; }
         public virtual DbSet<rRol_Persona> rRol_Persona { get; set; }
+    
+        public virtual ObjectResult<sp_ListarMedicos_Result> sp_ListarMedicos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListarMedicos_Result>("sp_ListarMedicos");
+        }
+    
+        public virtual ObjectResult<sp_ListarPacientes_Result> sp_ListarPacientes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ListarPacientes_Result>("sp_ListarPacientes");
+        }
     }
 }

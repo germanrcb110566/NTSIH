@@ -49,9 +49,11 @@ namespace NTSIH.Controllers
             ViewBag.alerta = "success";
             ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre");
-            ViewBag.modulo_id = new SelectList(db.Catalogo, "registro_id", "nombre");
-            ViewBag.accion_id = new SelectList(db.Catalogo, "registro_id", "nombre");
+
+
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id==4), "registro_id", "nombre");
+            ViewBag.modulo_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 5), "registro_id", "nombre");
+            ViewBag.accion_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 3), "registro_id", "nombre");
             return View();
         }
 
@@ -69,9 +71,9 @@ namespace NTSIH.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.rol_id);
-            ViewBag.modulo_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.modulo_id);
-            ViewBag.accion_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.accion_id);
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 4), "registro_id", "nombre", mPermisos.rol_id);
+            ViewBag.modulo_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 5), "registro_id", "nombre", mPermisos.modulo_id);
+            ViewBag.accion_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 3), "registro_id", "nombre", mPermisos.accion_id);
             return View(mPermisos);
         }
 
@@ -90,9 +92,9 @@ namespace NTSIH.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.rol_id);
-            ViewBag.modulo_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.modulo_id);
-            ViewBag.accion_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.accion_id);
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 4), "registro_id", "nombre", mPermisos.rol_id);
+            ViewBag.modulo_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 5), "registro_id", "nombre", mPermisos.modulo_id);
+            ViewBag.accion_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 3), "registro_id", "nombre", mPermisos.accion_id);
             return View(mPermisos);
         }
 
@@ -109,9 +111,9 @@ namespace NTSIH.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.rol_id);
-            ViewBag.modulo_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.modulo_id);
-            ViewBag.accion_id = new SelectList(db.Catalogo, "registro_id", "nombre", mPermisos.accion_id);
+            ViewBag.rol_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 4), "registro_id", "nombre", mPermisos.rol_id);
+            ViewBag.modulo_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 5), "registro_id", "nombre", mPermisos.modulo_id);
+            ViewBag.accion_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 3), "registro_id", "nombre", mPermisos.accion_id);
             return View(mPermisos);
         }
 

@@ -66,7 +66,6 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "registro_id,identificacion_tipo,identificacion,nombres,apellidos,direccion,telefono,celular,fecha_nacimiento,correo_electronico,genero,ciudad_residencia,nacionalidad,clave,estado")] mPersona mPersona)
         {
-            string Mensaje = null;
             string Rol = null;
             string SentenciaSQL = null;
             if (ModelState.IsValid)
