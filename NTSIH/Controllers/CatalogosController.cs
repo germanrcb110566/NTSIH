@@ -24,6 +24,7 @@ namespace NTSIH.Controllers
             ViewBag.msgmodulo = "Atributo de Catálogos".ToUpper();
 
             var catalogo = db.Catalogo.Include(c => c.mCatalogo);
+            
             return View(await catalogo.ToListAsync());
         }
 
@@ -64,11 +65,18 @@ namespace NTSIH.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Catalogo.Add(catalogo);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                try
+                {
+                    db.Catalogo.Add(catalogo);
+                    await db.SaveChangesAsync();
+                    Session["error"] = "0000:ATRIBUTO CREADO CORECTAMENTE";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    Session["error"] = "0020" + ex.Message;
+                }           
             }
-
             ViewBag.catalogo_id = new SelectList(db.mCatalogo, "registro_id", "catalogo", catalogo.catalogo_id);
             return View(catalogo);
         }

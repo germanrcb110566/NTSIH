@@ -36,6 +36,8 @@ namespace NTSIH.Models
         public bool estado { get; set; }
     
         public virtual mCatalogo mCatalogo { get; set; }
+        public virtual mCatalogo mCatalogo1 { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mCita> mCita { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

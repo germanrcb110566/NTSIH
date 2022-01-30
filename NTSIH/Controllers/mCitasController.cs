@@ -54,7 +54,6 @@ namespace NTSIH.Controllers
 
             ViewBag.especialidad_id = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 6), "registro_id", "nombre");
             ViewBag.registro_id = new SelectList(db.mAtencion, "cita_id", "diagnostico");
-            //ViewBag.rol_id = new SelectList(db.Catalogo, "registro_id", "nombre");
             ViewBag.paciente_id = new SelectList(db.mPersona, "registro_id", "identificacion", "Nombres");
             ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion");
             return View();

@@ -11,14 +11,23 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class mCita
     {
         public int registro_id { get; set; }
         public int paciente_id { get; set; }
         public int medico_id { get; set; }
         public int especialidad_id { get; set; }
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fecha de Cita")]
         public System.DateTime fecha { get; set; }
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Hora de Cita")]
         public System.DateTime hora { get; set; }
         public string motivo { get; set; }
         public bool estado { get; set; }

@@ -76,8 +76,7 @@ namespace NTSIH.Controllers
                     mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);
                 
                     db.mPersona.Add(mPersona);
-                    await db.SaveChangesAsync();
-                    Mensaje = null;
+                    await db.SaveChangesAsync();                
                     Rol = null;
                     SentenciaSQL = "INSERT INTO RROL_PERSONA VALUES (" + mPersona.registro_id + ",10)";
 
@@ -89,17 +88,17 @@ namespace NTSIH.Controllers
                             Rol = conexion.Database.SqlQuery<string>(SentenciaSQL).FirstOrDefault();
                             if (Rol != null)
                             {
-                                Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
+                                Session["error"] = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
                             }
                             else
                             {
-                                Mensaje = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
+                                Session["error"] = "0099NO TIENE ASIGNADO UN ROL LA PERSONA";
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        Mensaje = "0020" + ex.Message;
+                        Session["error"] = "0020" + ex.Message;
                     }
                     string Log = aud.InsertarLog(mPersona.registro_id, 10, 1, SentenciaSQL);
 
@@ -108,7 +107,7 @@ namespace NTSIH.Controllers
                 {
                     string Log = aud.InsertarLog(1, 10, 1, ex.Message);
                 }
-
+                Session["error"] = "0001:Error en la estructrura de los datos".ToUpper();
                 return RedirectToAction("Index");
             }
 
