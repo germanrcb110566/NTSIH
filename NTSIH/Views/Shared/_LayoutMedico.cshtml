@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema Hospitalario</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -34,11 +32,10 @@
     <footer style="background-color: darkblue; color: white; text-align: center ">
         <br /><small>&copy; @DateTime.Now.Year  Todos los derechos reservados 2022 -      German Camacho B.</small><br />
     </footer>
+    <script src="~/Scripts/bootstrap.js"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script src="~/Scripts/bootstrap.js"></script>
-
 
 </body>
 

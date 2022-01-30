@@ -30,11 +30,11 @@ namespace NTSIH.Controllers
             string SentenciaSQL = "select nombre from catalogo where  registro_id in (";
             SentenciaSQL += "select rol_id from rrol_Persona where persona_id in ";
             SentenciaSQL += "(select registro_id from mPersona where identificacion='" + Persona_Id + "')";
-            SentenciaSQL += ") order by descripcion asc";
+            SentenciaSQL += ") order by descripcion desc";
             string SentenciaSQL2 = "select registro_id from catalogo where  registro_id in (";
             SentenciaSQL2 += "select  rol_id  from rrol_Persona where persona_id in ";
             SentenciaSQL2 += "(select registro_id from mPersona where identificacion='" + Persona_Id + "')";
-            SentenciaSQL2 += ") order by descripcion asc";
+            SentenciaSQL2 += ") order by descripcion desc";
             try
             {
                 using (var conexion = new SIHEntities())

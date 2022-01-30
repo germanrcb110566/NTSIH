@@ -82,7 +82,13 @@ namespace NTSIH.Controllers
                     }
                     if (oRol == "MÉDICO")
                     {
+                        oRol = "MEDICO";
+                        Session["Rol"] = "MEDICO";
                         ViewBag.layout = "~/Views/Shared/_LayoutMedico.cshtml";                        
+                    }
+                    if (oRol == "ALTA GERENCIA")
+                    {
+                        ViewBag.layout = "~/Views/Shared/_LayoutMedico.cshtml";
                     }
                     Session["Layout"] = ViewBag.layout;
                     return Content(oRol);

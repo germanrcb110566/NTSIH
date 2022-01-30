@@ -58,7 +58,7 @@
                 if (data == "ADMINISTRADOR") {
                     document.location.href = "@Url.Content("~/Home/IndexAdmin")"
                 } else {
-                    if (data == "GESTION") {
+                    if (data == "SECRETARIA") {
                         document.location.href = "@Url.Content("~/Home/IndexGestion")"
                     } else {
                         if (data == "MEDICO") {
@@ -69,8 +69,12 @@
                             } else {
                                 if (data == "AUXILIAR") {
                                     document.location.href = "@Url.Content("~/Home/IndexGestion")"
-                                }else {
+                                } else {
+                                    if (data == "ALTA GERENCIA") {
+                                        document.location.href = "@Url.Content("~/Home/IndexGestion")"
+                                    } else {
                                         document.location.href = "@Url.Content("~/")"
+                                    }
                                 }
                             }
                         }

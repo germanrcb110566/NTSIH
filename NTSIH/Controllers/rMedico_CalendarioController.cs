@@ -52,7 +52,10 @@ namespace NTSIH.Controllers
             ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
             ViewBag.layout = Session["Layout"];
             ViewBag.calendario_id = new SelectList(db.mCalendario, "registro_id", "nombre");
-            ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion");
+            //ViewBag.medico_id = new SelectList(db.mPersona, "registro_id", "identificacion");
+
+            ViewBag.medico_id = new SelectList(db.rRol_Persona.Include("mPersona").Where(x => x.rol_id == 15).Select(x => x.mPersona), "registro_id", "nombres");
+
             return View();
         }
 

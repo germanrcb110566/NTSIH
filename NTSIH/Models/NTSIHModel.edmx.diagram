@@ -5,34 +5,34 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2eaa4a844ea7466e99e315cfc5b7ae4e" Name="Diagram1">
-        <EntityTypeShape EntityType="SIHModel.Catalogo" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mAtencion" Width="1.5" PointX="9.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mAuditoria" Width="1.5" PointX="7.5" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mCalendario" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mCatalogo" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mCita" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mParametros" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mPermisos" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.mPersona" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.rMedico_Calendario" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SIHModel.rRol_Persona" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
-        <AssociationConnector Association="SIHModel.FK_Catalogo_mCatalogo" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mCita_Catalogo" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mPermisos_Catalogo" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mPermisos_Catalogo1" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mPermisos_Catalogo2" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo1" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo2" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo3" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_rRol_Persona_Catalogo" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mAtencion_mCita1" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mAuditoria_mPersonas" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_rMedico_Calendario_mCalendario" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mCita_mPersona" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_mCita_mPersona1" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_rMedico_Calendario_mPersona" ManuallyRouted="false" />
-        <AssociationConnector Association="SIHModel.FK_rRolPersona_mPersonas" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SIHModel.Catalogo" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="SIHModel.mAtencion" Width="1.5" PointX="9.75" PointY="8.5" />
+        <EntityTypeShape EntityType="SIHModel.mAuditoria" Width="1.5" PointX="7.5" PointY="16.5" />
+        <EntityTypeShape EntityType="SIHModel.mCalendario" Width="1.5" PointX="8.25" PointY="20.25" />
+        <EntityTypeShape EntityType="SIHModel.mCatalogo" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="SIHModel.mCita" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="SIHModel.mParametros" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SIHModel.mPermisos" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="SIHModel.mPersona" Width="1.5" PointX="5.25" PointY="12.125" />
+        <EntityTypeShape EntityType="SIHModel.rMedico_Calendario" Width="1.5" PointX="10.5" PointY="14.875" />
+        <EntityTypeShape EntityType="SIHModel.rRol_Persona" Width="1.5" PointX="10.5" PointY="11.5" />
+        <AssociationConnector Association="SIHModel.FK_Catalogo_mCatalogo" />
+        <AssociationConnector Association="SIHModel.FK_mCita_Catalogo" />
+        <AssociationConnector Association="SIHModel.FK_mPermisos_Catalogo" />
+        <AssociationConnector Association="SIHModel.FK_mPermisos_Catalogo1" />
+        <AssociationConnector Association="SIHModel.FK_mPermisos_Catalogo2" />
+        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo" />
+        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo1" />
+        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo2" />
+        <AssociationConnector Association="SIHModel.FK_mPersona_Catalogo3" />
+        <AssociationConnector Association="SIHModel.FK_rRol_Persona_Catalogo" />
+        <AssociationConnector Association="SIHModel.FK_mAtencion_mCita1" />
+        <AssociationConnector Association="SIHModel.FK_mAuditoria_mPersonas" />
+        <AssociationConnector Association="SIHModel.FK_rMedico_Calendario_mCalendario" />
+        <AssociationConnector Association="SIHModel.FK_mCita_mPersona" />
+        <AssociationConnector Association="SIHModel.FK_mCita_mPersona1" />
+        <AssociationConnector Association="SIHModel.FK_rMedico_Calendario_mPersona" />
+        <AssociationConnector Association="SIHModel.FK_rRolPersona_mPersonas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -115,8 +115,7 @@
         </EntityType>
         <EntityType Name="rMedico_Calendario">
           <Key>
-            <PropertyRef Name="medico_id" />
-            <PropertyRef Name="calendario_id" />
+            <PropertyRef Name="registro_id" />
           </Key>
           <Property Name="registro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="medico_id" Type="int" Nullable="false" />
@@ -124,8 +123,7 @@
         </EntityType>
         <EntityType Name="rRol_Persona">
           <Key>
-            <PropertyRef Name="persona_id" />
-            <PropertyRef Name="rol_id" />
+            <PropertyRef Name="registro_id" />
           </Key>
           <Property Name="registro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="persona_id" Type="int" Nullable="false" />
@@ -335,8 +333,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="sp_ListarMedicos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_ListarPacientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SIHModelStoreContainer">
           <EntitySet Name="Catalogo" EntityType="Self.Catalogo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mAtencion" EntityType="Self.mAtencion" Schema="dbo" store:Type="Tables" />
@@ -422,452 +418,88 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SIHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Catalogo">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="catalogo_id" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="mCatalogo" Relationship="Self.FK_Catalogo_mCatalogo" FromRole="Catalogo" ToRole="mCatalogo" />
-          <NavigationProperty Name="mCita" Relationship="Self.FK_mCita_Catalogo" FromRole="Catalogo" ToRole="mCita" />
-          <NavigationProperty Name="mPermisos" Relationship="Self.FK_mPermisos_Catalogo" FromRole="Catalogo" ToRole="mPermisos" />
-          <NavigationProperty Name="mPermisos1" Relationship="Self.FK_mPermisos_Catalogo1" FromRole="Catalogo" ToRole="mPermisos" />
-          <NavigationProperty Name="mPermisos2" Relationship="Self.FK_mPermisos_Catalogo2" FromRole="Catalogo" ToRole="mPermisos" />
-          <NavigationProperty Name="mPersona" Relationship="Self.FK_mPersona_Catalogo" FromRole="Catalogo" ToRole="mPersona" />
-          <NavigationProperty Name="mPersona1" Relationship="Self.FK_mPersona_Catalogo1" FromRole="Catalogo" ToRole="mPersona" />
-          <NavigationProperty Name="mPersona2" Relationship="Self.FK_mPersona_Catalogo2" FromRole="Catalogo" ToRole="mPersona" />
-          <NavigationProperty Name="mPersona3" Relationship="Self.FK_mPersona_Catalogo3" FromRole="Catalogo" ToRole="mPersona" />
-          <NavigationProperty Name="rRol_Persona" Relationship="Self.FK_rRol_Persona_Catalogo" FromRole="Catalogo" ToRole="rRol_Persona" />
-        </EntityType>
-        <EntityType Name="mAtencion">
-          <Key>
-            <PropertyRef Name="cita_id" />
-          </Key>
-          <Property Name="cita_id" Type="Int32" Nullable="false" />
-          <Property Name="diagnostico" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="examenes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="receta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="mCita" Relationship="Self.FK_mAtencion_mCita1" FromRole="mAtencion" ToRole="mCita" />
-        </EntityType>
-        <EntityType Name="mAuditoria">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="usuario_id" Type="Int32" Nullable="false" />
-          <Property Name="rol_id" Type="Int32" Nullable="false" />
-          <Property Name="modulo_id" Type="Int32" Nullable="false" />
-          <Property Name="sentencia" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="mPersona" Relationship="Self.FK_mAuditoria_mPersonas" FromRole="mAuditoria" ToRole="mPersona" />
-        </EntityType>
-        <EntityType Name="mCalendario">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="entre_semana" Type="Boolean" Nullable="false" />
-          <Property Name="fin_de_semana" Type="Boolean" Nullable="false" />
-          <Property Name="horario_desde_m" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="horario_hasta_m" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="horario_desde_v" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="horario_hasta_v" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="intervalo_citas" Type="Int32" Nullable="false" />
-          <Property Name="intervalo_fechas" Type="Int32" Nullable="false" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="rMedico_Calendario" Relationship="Self.FK_rMedico_Calendario_mCalendario" FromRole="mCalendario" ToRole="rMedico_Calendario" />
-        </EntityType>
-        <EntityType Name="mCatalogo">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="catalogo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Catalogo1" Relationship="Self.FK_Catalogo_mCatalogo" FromRole="mCatalogo" ToRole="Catalogo" />
-        </EntityType>
-        <EntityType Name="mCita">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="paciente_id" Type="Int32" Nullable="false" />
-          <Property Name="medico_id" Type="Int32" Nullable="false" />
-          <Property Name="especialidad_id" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="hora" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="motivo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Catalogo" Relationship="Self.FK_mCita_Catalogo" FromRole="mCita" ToRole="Catalogo" />
-          <NavigationProperty Name="mAtencion" Relationship="Self.FK_mAtencion_mCita1" FromRole="mCita" ToRole="mAtencion" />
-          <NavigationProperty Name="mPersona" Relationship="Self.FK_mCita_mPersona" FromRole="mCita" ToRole="mPersona" />
-          <NavigationProperty Name="mPersona1" Relationship="Self.FK_mCita_mPersona1" FromRole="mCita" ToRole="mPersona" />
-        </EntityType>
-        <EntityType Name="mParametros">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="smtpserver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="smtppuerto" Type="Int32" Nullable="false" />
-          <Property Name="correo_sistema" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="clave_correo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="mPermisos">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="rol_id" Type="Int32" Nullable="false" />
-          <Property Name="modulo_id" Type="Int32" Nullable="false" />
-          <Property Name="accion_id" Type="Int32" Nullable="false" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Catalogo" Relationship="Self.FK_mPermisos_Catalogo" FromRole="mPermisos" ToRole="Catalogo" />
-          <NavigationProperty Name="Catalogo1" Relationship="Self.FK_mPermisos_Catalogo1" FromRole="mPermisos" ToRole="Catalogo" />
-          <NavigationProperty Name="Catalogo2" Relationship="Self.FK_mPermisos_Catalogo2" FromRole="mPermisos" ToRole="Catalogo" />
-        </EntityType>
-        <EntityType Name="mPersona">
-          <Key>
-            <PropertyRef Name="registro_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="identificacion_tipo" Type="Int32" Nullable="false" />
-          <Property Name="identificacion" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="nombres" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="apellidos" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="celular" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="genero" Type="Int32" Nullable="false" />
-          <Property Name="ciudad_residencia" Type="Int32" Nullable="false" />
-          <Property Name="nacionalidad" Type="Int32" Nullable="false" />
-          <Property Name="clave" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Catalogo" Relationship="Self.FK_mPersona_Catalogo" FromRole="mPersona" ToRole="Catalogo" />
-          <NavigationProperty Name="Catalogo1" Relationship="Self.FK_mPersona_Catalogo1" FromRole="mPersona" ToRole="Catalogo" />
-          <NavigationProperty Name="Catalogo2" Relationship="Self.FK_mPersona_Catalogo2" FromRole="mPersona" ToRole="Catalogo" />
-          <NavigationProperty Name="Catalogo3" Relationship="Self.FK_mPersona_Catalogo3" FromRole="mPersona" ToRole="Catalogo" />
-          <NavigationProperty Name="mAuditoria" Relationship="Self.FK_mAuditoria_mPersonas" FromRole="mPersona" ToRole="mAuditoria" />
-          <NavigationProperty Name="mCita" Relationship="Self.FK_mCita_mPersona" FromRole="mPersona" ToRole="mCita" />
-          <NavigationProperty Name="mCita1" Relationship="Self.FK_mCita_mPersona1" FromRole="mPersona" ToRole="mCita" />
-          <NavigationProperty Name="rMedico_Calendario" Relationship="Self.FK_rMedico_Calendario_mPersona" FromRole="mPersona" ToRole="rMedico_Calendario" />
-          <NavigationProperty Name="rRol_Persona" Relationship="Self.FK_rRolPersona_mPersonas" FromRole="mPersona" ToRole="rRol_Persona" />
-        </EntityType>
-        <EntityType Name="rMedico_Calendario">
-          <Key>
-            <PropertyRef Name="medico_id" />
-            <PropertyRef Name="calendario_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="medico_id" Type="Int32" Nullable="false" />
-          <Property Name="calendario_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="mCalendario" Relationship="Self.FK_rMedico_Calendario_mCalendario" FromRole="rMedico_Calendario" ToRole="mCalendario" />
-          <NavigationProperty Name="mPersona" Relationship="Self.FK_rMedico_Calendario_mPersona" FromRole="rMedico_Calendario" ToRole="mPersona" />
-        </EntityType>
-        <EntityType Name="rRol_Persona">
-          <Key>
-            <PropertyRef Name="persona_id" />
-            <PropertyRef Name="rol_id" />
-          </Key>
-          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="persona_id" Type="Int32" Nullable="false" />
-          <Property Name="rol_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Catalogo" Relationship="Self.FK_rRol_Persona_Catalogo" FromRole="rRol_Persona" ToRole="Catalogo" />
-          <NavigationProperty Name="mPersona" Relationship="Self.FK_rRolPersona_mPersonas" FromRole="rRol_Persona" ToRole="mPersona" />
-        </EntityType>
-        <Association Name="FK_Catalogo_mCatalogo">
-          <End Role="mCatalogo" Type="Self.mCatalogo" Multiplicity="1" />
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mCatalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="Catalogo">
-              <PropertyRef Name="catalogo_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mCita_Catalogo">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mCita" Type="Self.mCita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mCita">
-              <PropertyRef Name="especialidad_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mPermisos_Catalogo">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mPermisos" Type="Self.mPermisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mPermisos">
-              <PropertyRef Name="rol_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mPermisos_Catalogo1">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mPermisos" Type="Self.mPermisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mPermisos">
-              <PropertyRef Name="modulo_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mPermisos_Catalogo2">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mPermisos" Type="Self.mPermisos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mPermisos">
-              <PropertyRef Name="accion_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mPersona_Catalogo">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mPersona">
-              <PropertyRef Name="identificacion_tipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mPersona_Catalogo1">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mPersona">
-              <PropertyRef Name="genero" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mPersona_Catalogo2">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mPersona">
-              <PropertyRef Name="ciudad_residencia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mPersona_Catalogo3">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mPersona">
-              <PropertyRef Name="nacionalidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_rRol_Persona_Catalogo">
-          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
-          <End Role="rRol_Persona" Type="Self.rRol_Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Catalogo">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="rRol_Persona">
-              <PropertyRef Name="rol_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mAtencion_mCita1">
-          <End Role="mCita" Type="Self.mCita" Multiplicity="1" />
-          <End Role="mAtencion" Type="Self.mAtencion" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="mCita">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mAtencion">
-              <PropertyRef Name="cita_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mAuditoria_mPersonas">
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="1" />
-          <End Role="mAuditoria" Type="Self.mAuditoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mPersona">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mAuditoria">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_rMedico_Calendario_mCalendario">
-          <End Role="mCalendario" Type="Self.mCalendario" Multiplicity="1" />
-          <End Role="rMedico_Calendario" Type="Self.rMedico_Calendario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mCalendario">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="rMedico_Calendario">
-              <PropertyRef Name="calendario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mCita_mPersona">
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="1" />
-          <End Role="mCita" Type="Self.mCita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mPersona">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mCita">
-              <PropertyRef Name="paciente_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mCita_mPersona1">
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="1" />
-          <End Role="mCita" Type="Self.mCita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mPersona">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="mCita">
-              <PropertyRef Name="medico_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_rMedico_Calendario_mPersona">
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="1" />
-          <End Role="rMedico_Calendario" Type="Self.rMedico_Calendario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mPersona">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="rMedico_Calendario">
-              <PropertyRef Name="medico_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_rRolPersona_mPersonas">
-          <End Role="mPersona" Type="Self.mPersona" Multiplicity="1" />
-          <End Role="rRol_Persona" Type="Self.rRol_Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mPersona">
-              <PropertyRef Name="registro_id" />
-            </Principal>
-            <Dependent Role="rRol_Persona">
-              <PropertyRef Name="persona_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SIHEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Catalogo" EntityType="Self.Catalogo" />
-          <EntitySet Name="mAtencion" EntityType="Self.mAtencion" />
-          <EntitySet Name="mAuditoria" EntityType="Self.mAuditoria" />
-          <EntitySet Name="mCalendario" EntityType="Self.mCalendario" />
-          <EntitySet Name="mCatalogo" EntityType="Self.mCatalogo" />
-          <EntitySet Name="mCita" EntityType="Self.mCita" />
-          <EntitySet Name="mParametros" EntityType="Self.mParametros" />
-          <EntitySet Name="mPermisos" EntityType="Self.mPermisos" />
-          <EntitySet Name="mPersona" EntityType="Self.mPersona" />
-          <EntitySet Name="rMedico_Calendario" EntityType="Self.rMedico_Calendario" />
-          <EntitySet Name="rRol_Persona" EntityType="Self.rRol_Persona" />
-          <AssociationSet Name="FK_Catalogo_mCatalogo" Association="Self.FK_Catalogo_mCatalogo">
+          <FunctionImport Name="sp_ListarMedicos" ReturnType="Collection(SIHModel.sp_ListarMedicos_Result)" />
+          <FunctionImport Name="sp_ListarPacientes" ReturnType="Collection(SIHModel.sp_ListarPacientes_Result)" />
+          <EntitySet Name="Catalogo" EntityType="SIHModel.Catalogo" />
+          <EntitySet Name="mAtencion" EntityType="SIHModel.mAtencion" />
+          <EntitySet Name="mAuditoria" EntityType="SIHModel.mAuditoria" />
+          <EntitySet Name="mCalendario" EntityType="SIHModel.mCalendario" />
+          <EntitySet Name="mCatalogo" EntityType="SIHModel.mCatalogo" />
+          <EntitySet Name="mCita" EntityType="SIHModel.mCita" />
+          <EntitySet Name="mParametros" EntityType="SIHModel.mParametros" />
+          <EntitySet Name="mPermisos" EntityType="SIHModel.mPermisos" />
+          <EntitySet Name="mPersona" EntityType="SIHModel.mPersona" />
+          <EntitySet Name="rMedico_Calendario" EntityType="SIHModel.rMedico_Calendario" />
+          <EntitySet Name="rRol_Persona" EntityType="SIHModel.rRol_Persona" />
+          <AssociationSet Name="FK_Catalogo_mCatalogo" Association="SIHModel.FK_Catalogo_mCatalogo">
             <End Role="mCatalogo" EntitySet="mCatalogo" />
             <End Role="Catalogo" EntitySet="Catalogo" />
           </AssociationSet>
-          <AssociationSet Name="FK_mCita_Catalogo" Association="Self.FK_mCita_Catalogo">
+          <AssociationSet Name="FK_mCita_Catalogo" Association="SIHModel.FK_mCita_Catalogo">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mCita" EntitySet="mCita" />
           </AssociationSet>
-          <AssociationSet Name="FK_mPermisos_Catalogo" Association="Self.FK_mPermisos_Catalogo">
+          <AssociationSet Name="FK_mPermisos_Catalogo" Association="SIHModel.FK_mPermisos_Catalogo">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPermisos" EntitySet="mPermisos" />
           </AssociationSet>
-          <AssociationSet Name="FK_mPermisos_Catalogo1" Association="Self.FK_mPermisos_Catalogo1">
+          <AssociationSet Name="FK_mPermisos_Catalogo1" Association="SIHModel.FK_mPermisos_Catalogo1">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPermisos" EntitySet="mPermisos" />
           </AssociationSet>
-          <AssociationSet Name="FK_mPermisos_Catalogo2" Association="Self.FK_mPermisos_Catalogo2">
+          <AssociationSet Name="FK_mPermisos_Catalogo2" Association="SIHModel.FK_mPermisos_Catalogo2">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPermisos" EntitySet="mPermisos" />
           </AssociationSet>
-          <AssociationSet Name="FK_mPersona_Catalogo" Association="Self.FK_mPersona_Catalogo">
+          <AssociationSet Name="FK_mPersona_Catalogo" Association="SIHModel.FK_mPersona_Catalogo">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPersona" EntitySet="mPersona" />
           </AssociationSet>
-          <AssociationSet Name="FK_mPersona_Catalogo1" Association="Self.FK_mPersona_Catalogo1">
+          <AssociationSet Name="FK_mPersona_Catalogo1" Association="SIHModel.FK_mPersona_Catalogo1">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPersona" EntitySet="mPersona" />
           </AssociationSet>
-          <AssociationSet Name="FK_mPersona_Catalogo2" Association="Self.FK_mPersona_Catalogo2">
+          <AssociationSet Name="FK_mPersona_Catalogo2" Association="SIHModel.FK_mPersona_Catalogo2">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPersona" EntitySet="mPersona" />
           </AssociationSet>
-          <AssociationSet Name="FK_mPersona_Catalogo3" Association="Self.FK_mPersona_Catalogo3">
+          <AssociationSet Name="FK_mPersona_Catalogo3" Association="SIHModel.FK_mPersona_Catalogo3">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPersona" EntitySet="mPersona" />
           </AssociationSet>
-          <AssociationSet Name="FK_rRol_Persona_Catalogo" Association="Self.FK_rRol_Persona_Catalogo">
+          <AssociationSet Name="FK_rRol_Persona_Catalogo" Association="SIHModel.FK_rRol_Persona_Catalogo">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="rRol_Persona" EntitySet="rRol_Persona" />
           </AssociationSet>
-          <AssociationSet Name="FK_mAtencion_mCita1" Association="Self.FK_mAtencion_mCita1">
+          <AssociationSet Name="FK_mAtencion_mCita1" Association="SIHModel.FK_mAtencion_mCita1">
             <End Role="mCita" EntitySet="mCita" />
             <End Role="mAtencion" EntitySet="mAtencion" />
           </AssociationSet>
-          <AssociationSet Name="FK_mAuditoria_mPersonas" Association="Self.FK_mAuditoria_mPersonas">
+          <AssociationSet Name="FK_mAuditoria_mPersonas" Association="SIHModel.FK_mAuditoria_mPersonas">
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="mAuditoria" EntitySet="mAuditoria" />
           </AssociationSet>
-          <AssociationSet Name="FK_rMedico_Calendario_mCalendario" Association="Self.FK_rMedico_Calendario_mCalendario">
+          <AssociationSet Name="FK_rMedico_Calendario_mCalendario" Association="SIHModel.FK_rMedico_Calendario_mCalendario">
             <End Role="mCalendario" EntitySet="mCalendario" />
             <End Role="rMedico_Calendario" EntitySet="rMedico_Calendario" />
           </AssociationSet>
-          <AssociationSet Name="FK_mCita_mPersona" Association="Self.FK_mCita_mPersona">
+          <AssociationSet Name="FK_mCita_mPersona" Association="SIHModel.FK_mCita_mPersona">
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="mCita" EntitySet="mCita" />
           </AssociationSet>
-          <AssociationSet Name="FK_mCita_mPersona1" Association="Self.FK_mCita_mPersona1">
+          <AssociationSet Name="FK_mCita_mPersona1" Association="SIHModel.FK_mCita_mPersona1">
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="mCita" EntitySet="mCita" />
           </AssociationSet>
-          <AssociationSet Name="FK_rMedico_Calendario_mPersona" Association="Self.FK_rMedico_Calendario_mPersona">
+          <AssociationSet Name="FK_rMedico_Calendario_mPersona" Association="SIHModel.FK_rMedico_Calendario_mPersona">
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="rMedico_Calendario" EntitySet="rMedico_Calendario" />
           </AssociationSet>
-          <AssociationSet Name="FK_rRolPersona_mPersonas" Association="Self.FK_rRolPersona_mPersonas">
+          <AssociationSet Name="FK_rRolPersona_mPersonas" Association="SIHModel.FK_rRolPersona_mPersonas">
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="rRol_Persona" EntitySet="rRol_Persona" />
           </AssociationSet>
-          <FunctionImport Name="sp_ListarMedicos" ReturnType="Collection(SIHModel.sp_ListarMedicos_Result)" />
-          <FunctionImport Name="sp_ListarPacientes" ReturnType="Collection(SIHModel.sp_ListarPacientes_Result)" />
         </EntityContainer>
         <ComplexType Name="sp_ListarMedicos_Result">
           <Property Type="Int32" Name="registro_id" Nullable="false" />
@@ -903,6 +535,368 @@
           <Property Type="String" Name="clave" Nullable="false" MaxLength="1024" />
           <Property Type="Boolean" Name="estado" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Catalogo">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catalogo_id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="mCatalogo" Relationship="SIHModel.FK_Catalogo_mCatalogo" FromRole="Catalogo" ToRole="mCatalogo" />
+          <NavigationProperty Name="mCita" Relationship="SIHModel.FK_mCita_Catalogo" FromRole="Catalogo" ToRole="mCita" />
+          <NavigationProperty Name="mPermisos" Relationship="SIHModel.FK_mPermisos_Catalogo" FromRole="Catalogo" ToRole="mPermisos" />
+          <NavigationProperty Name="mPermisos1" Relationship="SIHModel.FK_mPermisos_Catalogo1" FromRole="Catalogo" ToRole="mPermisos" />
+          <NavigationProperty Name="mPermisos2" Relationship="SIHModel.FK_mPermisos_Catalogo2" FromRole="Catalogo" ToRole="mPermisos" />
+          <NavigationProperty Name="mPersona" Relationship="SIHModel.FK_mPersona_Catalogo" FromRole="Catalogo" ToRole="mPersona" />
+          <NavigationProperty Name="mPersona1" Relationship="SIHModel.FK_mPersona_Catalogo1" FromRole="Catalogo" ToRole="mPersona" />
+          <NavigationProperty Name="mPersona2" Relationship="SIHModel.FK_mPersona_Catalogo2" FromRole="Catalogo" ToRole="mPersona" />
+          <NavigationProperty Name="mPersona3" Relationship="SIHModel.FK_mPersona_Catalogo3" FromRole="Catalogo" ToRole="mPersona" />
+          <NavigationProperty Name="rRol_Persona" Relationship="SIHModel.FK_rRol_Persona_Catalogo" FromRole="Catalogo" ToRole="rRol_Persona" />
+        </EntityType>
+        <EntityType Name="mAtencion">
+          <Key>
+            <PropertyRef Name="cita_id" />
+          </Key>
+          <Property Name="cita_id" Type="Int32" Nullable="false" />
+          <Property Name="diagnostico" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="examenes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="receta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mCita" Relationship="SIHModel.FK_mAtencion_mCita1" FromRole="mAtencion" ToRole="mCita" />
+        </EntityType>
+        <EntityType Name="mAuditoria">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <Property Name="modulo_id" Type="Int32" Nullable="false" />
+          <Property Name="sentencia" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="mPersona" Relationship="SIHModel.FK_mAuditoria_mPersonas" FromRole="mAuditoria" ToRole="mPersona" />
+        </EntityType>
+        <EntityType Name="mCalendario">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="entre_semana" Type="Boolean" Nullable="false" />
+          <Property Name="fin_de_semana" Type="Boolean" Nullable="false" />
+          <Property Name="horario_desde_m" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horario_hasta_m" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horario_desde_v" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horario_hasta_v" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="intervalo_citas" Type="Int32" Nullable="false" />
+          <Property Name="intervalo_fechas" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="rMedico_Calendario" Relationship="SIHModel.FK_rMedico_Calendario_mCalendario" FromRole="mCalendario" ToRole="rMedico_Calendario" />
+        </EntityType>
+        <EntityType Name="mCatalogo">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catalogo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Catalogo1" Relationship="SIHModel.FK_Catalogo_mCatalogo" FromRole="mCatalogo" ToRole="Catalogo" />
+        </EntityType>
+        <EntityType Name="mCita">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paciente_id" Type="Int32" Nullable="false" />
+          <Property Name="medico_id" Type="Int32" Nullable="false" />
+          <Property Name="especialidad_id" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="hora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="motivo" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Catalogo" Relationship="SIHModel.FK_mCita_Catalogo" FromRole="mCita" ToRole="Catalogo" />
+          <NavigationProperty Name="mAtencion" Relationship="SIHModel.FK_mAtencion_mCita1" FromRole="mCita" ToRole="mAtencion" />
+          <NavigationProperty Name="mPersona" Relationship="SIHModel.FK_mCita_mPersona" FromRole="mCita" ToRole="mPersona" />
+          <NavigationProperty Name="mPersona1" Relationship="SIHModel.FK_mCita_mPersona1" FromRole="mCita" ToRole="mPersona" />
+        </EntityType>
+        <EntityType Name="mParametros">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="smtpserver" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="smtppuerto" Type="Int32" Nullable="false" />
+          <Property Name="correo_sistema" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="clave_correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mPermisos">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <Property Name="modulo_id" Type="Int32" Nullable="false" />
+          <Property Name="accion_id" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Catalogo" Relationship="SIHModel.FK_mPermisos_Catalogo" FromRole="mPermisos" ToRole="Catalogo" />
+          <NavigationProperty Name="Catalogo1" Relationship="SIHModel.FK_mPermisos_Catalogo1" FromRole="mPermisos" ToRole="Catalogo" />
+          <NavigationProperty Name="Catalogo2" Relationship="SIHModel.FK_mPermisos_Catalogo2" FromRole="mPermisos" ToRole="Catalogo" />
+        </EntityType>
+        <EntityType Name="mPersona">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="identificacion_tipo" Type="Int32" Nullable="false" />
+          <Property Name="identificacion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="nombres" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="apellidos" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="celular" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="genero" Type="Int32" Nullable="false" />
+          <Property Name="ciudad_residencia" Type="Int32" Nullable="false" />
+          <Property Name="nacionalidad" Type="Int32" Nullable="false" />
+          <Property Name="clave" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Catalogo" Relationship="SIHModel.FK_mPersona_Catalogo" FromRole="mPersona" ToRole="Catalogo" />
+          <NavigationProperty Name="Catalogo1" Relationship="SIHModel.FK_mPersona_Catalogo1" FromRole="mPersona" ToRole="Catalogo" />
+          <NavigationProperty Name="Catalogo2" Relationship="SIHModel.FK_mPersona_Catalogo2" FromRole="mPersona" ToRole="Catalogo" />
+          <NavigationProperty Name="Catalogo3" Relationship="SIHModel.FK_mPersona_Catalogo3" FromRole="mPersona" ToRole="Catalogo" />
+          <NavigationProperty Name="mAuditoria" Relationship="SIHModel.FK_mAuditoria_mPersonas" FromRole="mPersona" ToRole="mAuditoria" />
+          <NavigationProperty Name="mCita" Relationship="SIHModel.FK_mCita_mPersona" FromRole="mPersona" ToRole="mCita" />
+          <NavigationProperty Name="mCita1" Relationship="SIHModel.FK_mCita_mPersona1" FromRole="mPersona" ToRole="mCita" />
+          <NavigationProperty Name="rMedico_Calendario" Relationship="SIHModel.FK_rMedico_Calendario_mPersona" FromRole="mPersona" ToRole="rMedico_Calendario" />
+          <NavigationProperty Name="rRol_Persona" Relationship="SIHModel.FK_rRolPersona_mPersonas" FromRole="mPersona" ToRole="rRol_Persona" />
+        </EntityType>
+        <EntityType Name="rMedico_Calendario">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="medico_id" Type="Int32" Nullable="false" />
+          <Property Name="calendario_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="mCalendario" Relationship="SIHModel.FK_rMedico_Calendario_mCalendario" FromRole="rMedico_Calendario" ToRole="mCalendario" />
+          <NavigationProperty Name="mPersona" Relationship="SIHModel.FK_rMedico_Calendario_mPersona" FromRole="rMedico_Calendario" ToRole="mPersona" />
+        </EntityType>
+        <EntityType Name="rRol_Persona">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="persona_id" Type="Int32" Nullable="false" />
+          <Property Name="rol_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Catalogo" Relationship="SIHModel.FK_rRol_Persona_Catalogo" FromRole="rRol_Persona" ToRole="Catalogo" />
+          <NavigationProperty Name="mPersona" Relationship="SIHModel.FK_rRolPersona_mPersonas" FromRole="rRol_Persona" ToRole="mPersona" />
+        </EntityType>
+        <Association Name="FK_Catalogo_mCatalogo">
+          <End Type="SIHModel.mCatalogo" Role="mCatalogo" Multiplicity="1" />
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mCatalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="Catalogo">
+              <PropertyRef Name="catalogo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mCita_Catalogo">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mCita" Role="mCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mCita">
+              <PropertyRef Name="especialidad_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mPermisos_Catalogo">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mPermisos" Role="mPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mPermisos">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mPermisos_Catalogo1">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mPermisos" Role="mPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mPermisos">
+              <PropertyRef Name="modulo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mPermisos_Catalogo2">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mPermisos" Role="mPermisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mPermisos">
+              <PropertyRef Name="accion_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mPersona_Catalogo">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mPersona">
+              <PropertyRef Name="identificacion_tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mPersona_Catalogo1">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mPersona">
+              <PropertyRef Name="genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mPersona_Catalogo2">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mPersona">
+              <PropertyRef Name="ciudad_residencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mPersona_Catalogo3">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mPersona">
+              <PropertyRef Name="nacionalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rRol_Persona_Catalogo">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.rRol_Persona" Role="rRol_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rRol_Persona">
+              <PropertyRef Name="rol_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mAtencion_mCita1">
+          <End Type="SIHModel.mCita" Role="mCita" Multiplicity="1" />
+          <End Type="SIHModel.mAtencion" Role="mAtencion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="mCita">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mAtencion">
+              <PropertyRef Name="cita_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mAuditoria_mPersonas">
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="1" />
+          <End Type="SIHModel.mAuditoria" Role="mAuditoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPersona">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mAuditoria">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rMedico_Calendario_mCalendario">
+          <End Type="SIHModel.mCalendario" Role="mCalendario" Multiplicity="1" />
+          <End Type="SIHModel.rMedico_Calendario" Role="rMedico_Calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mCalendario">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rMedico_Calendario">
+              <PropertyRef Name="calendario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mCita_mPersona">
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="1" />
+          <End Type="SIHModel.mCita" Role="mCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPersona">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mCita">
+              <PropertyRef Name="paciente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mCita_mPersona1">
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="1" />
+          <End Type="SIHModel.mCita" Role="mCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPersona">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mCita">
+              <PropertyRef Name="medico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rMedico_Calendario_mPersona">
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="1" />
+          <End Type="SIHModel.rMedico_Calendario" Role="rMedico_Calendario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPersona">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rMedico_Calendario">
+              <PropertyRef Name="medico_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rRolPersona_mPersonas">
+          <End Type="SIHModel.mPersona" Role="mPersona" Multiplicity="1" />
+          <End Type="SIHModel.rRol_Persona" Role="rRol_Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mPersona">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="rRol_Persona">
+              <PropertyRef Name="persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -912,180 +906,138 @@
           <EntitySetMapping Name="Catalogo">
             <EntityTypeMapping TypeName="SIHModel.Catalogo">
               <MappingFragment StoreEntitySet="Catalogo">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="catalogo_id" ColumnName="catalogo_id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="catalogo_id" ColumnName="catalogo_id" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mAtencion">
             <EntityTypeMapping TypeName="SIHModel.mAtencion">
               <MappingFragment StoreEntitySet="mAtencion">
-                <ScalarProperty Name="cita_id" ColumnName="cita_id" />
-                <ScalarProperty Name="diagnostico" ColumnName="diagnostico" />
-                <ScalarProperty Name="examenes" ColumnName="examenes" />
                 <ScalarProperty Name="receta" ColumnName="receta" />
+                <ScalarProperty Name="examenes" ColumnName="examenes" />
+                <ScalarProperty Name="diagnostico" ColumnName="diagnostico" />
+                <ScalarProperty Name="cita_id" ColumnName="cita_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mAuditoria">
             <EntityTypeMapping TypeName="SIHModel.mAuditoria">
               <MappingFragment StoreEntitySet="mAuditoria">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
-                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-                <ScalarProperty Name="modulo_id" ColumnName="modulo_id" />
                 <ScalarProperty Name="sentencia" ColumnName="sentencia" />
+                <ScalarProperty Name="modulo_id" ColumnName="modulo_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mCalendario">
             <EntityTypeMapping TypeName="SIHModel.mCalendario">
               <MappingFragment StoreEntitySet="mCalendario">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="entre_semana" ColumnName="entre_semana" />
-                <ScalarProperty Name="fin_de_semana" ColumnName="fin_de_semana" />
-                <ScalarProperty Name="horario_desde_m" ColumnName="horario_desde_m" />
-                <ScalarProperty Name="horario_hasta_m" ColumnName="horario_hasta_m" />
-                <ScalarProperty Name="horario_desde_v" ColumnName="horario_desde_v" />
-                <ScalarProperty Name="horario_hasta_v" ColumnName="horario_hasta_v" />
-                <ScalarProperty Name="intervalo_citas" ColumnName="intervalo_citas" />
-                <ScalarProperty Name="intervalo_fechas" ColumnName="intervalo_fechas" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="intervalo_fechas" ColumnName="intervalo_fechas" />
+                <ScalarProperty Name="intervalo_citas" ColumnName="intervalo_citas" />
+                <ScalarProperty Name="horario_hasta_v" ColumnName="horario_hasta_v" />
+                <ScalarProperty Name="horario_desde_v" ColumnName="horario_desde_v" />
+                <ScalarProperty Name="horario_hasta_m" ColumnName="horario_hasta_m" />
+                <ScalarProperty Name="horario_desde_m" ColumnName="horario_desde_m" />
+                <ScalarProperty Name="fin_de_semana" ColumnName="fin_de_semana" />
+                <ScalarProperty Name="entre_semana" ColumnName="entre_semana" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mCatalogo">
             <EntityTypeMapping TypeName="SIHModel.mCatalogo">
               <MappingFragment StoreEntitySet="mCatalogo">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="catalogo" ColumnName="catalogo" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="catalogo" ColumnName="catalogo" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mCita">
             <EntityTypeMapping TypeName="SIHModel.mCita">
               <MappingFragment StoreEntitySet="mCita">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="paciente_id" ColumnName="paciente_id" />
-                <ScalarProperty Name="medico_id" ColumnName="medico_id" />
-                <ScalarProperty Name="especialidad_id" ColumnName="especialidad_id" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="motivo" ColumnName="motivo" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="especialidad_id" ColumnName="especialidad_id" />
+                <ScalarProperty Name="medico_id" ColumnName="medico_id" />
+                <ScalarProperty Name="paciente_id" ColumnName="paciente_id" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mParametros">
             <EntityTypeMapping TypeName="SIHModel.mParametros">
               <MappingFragment StoreEntitySet="mParametros">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="smtpserver" ColumnName="smtpserver" />
-                <ScalarProperty Name="smtppuerto" ColumnName="smtppuerto" />
-                <ScalarProperty Name="correo_sistema" ColumnName="correo_sistema" />
-                <ScalarProperty Name="clave_correo" ColumnName="clave_correo" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="clave_correo" ColumnName="clave_correo" />
+                <ScalarProperty Name="correo_sistema" ColumnName="correo_sistema" />
+                <ScalarProperty Name="smtppuerto" ColumnName="smtppuerto" />
+                <ScalarProperty Name="smtpserver" ColumnName="smtpserver" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mPermisos">
             <EntityTypeMapping TypeName="SIHModel.mPermisos">
               <MappingFragment StoreEntitySet="mPermisos">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
-                <ScalarProperty Name="modulo_id" ColumnName="modulo_id" />
-                <ScalarProperty Name="accion_id" ColumnName="accion_id" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="accion_id" ColumnName="accion_id" />
+                <ScalarProperty Name="modulo_id" ColumnName="modulo_id" />
+                <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="mPersona">
             <EntityTypeMapping TypeName="SIHModel.mPersona">
               <MappingFragment StoreEntitySet="mPersona">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="identificacion_tipo" ColumnName="identificacion_tipo" />
-                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
-                <ScalarProperty Name="nombres" ColumnName="nombres" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="celular" ColumnName="celular" />
-                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
-                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-                <ScalarProperty Name="genero" ColumnName="genero" />
-                <ScalarProperty Name="ciudad_residencia" ColumnName="ciudad_residencia" />
-                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="ciudad_residencia" ColumnName="ciudad_residencia" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="celular" ColumnName="celular" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+                <ScalarProperty Name="identificacion_tipo" ColumnName="identificacion_tipo" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rMedico_Calendario">
             <EntityTypeMapping TypeName="SIHModel.rMedico_Calendario">
               <MappingFragment StoreEntitySet="rMedico_Calendario">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="medico_id" ColumnName="medico_id" />
                 <ScalarProperty Name="calendario_id" ColumnName="calendario_id" />
+                <ScalarProperty Name="medico_id" ColumnName="medico_id" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rRol_Persona">
             <EntityTypeMapping TypeName="SIHModel.rRol_Persona">
               <MappingFragment StoreEntitySet="rRol_Persona">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="persona_id" ColumnName="persona_id" />
                 <ScalarProperty Name="rol_id" ColumnName="rol_id" />
+                <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_ListarMedicos" FunctionName="SIHModel.Store.sp_ListarMedicos">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SIHModel.sp_ListarMedicos_Result">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="identificacion_tipo" ColumnName="identificacion_tipo" />
-                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
-                <ScalarProperty Name="nombres" ColumnName="nombres" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="celular" ColumnName="celular" />
-                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
-                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-                <ScalarProperty Name="genero" ColumnName="genero" />
-                <ScalarProperty Name="ciudad_residencia" ColumnName="ciudad_residencia" />
-                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ListarPacientes" FunctionName="SIHModel.Store.sp_ListarPacientes">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SIHModel.sp_ListarPacientes_Result">
-                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
-                <ScalarProperty Name="identificacion_tipo" ColumnName="identificacion_tipo" />
-                <ScalarProperty Name="identificacion" ColumnName="identificacion" />
-                <ScalarProperty Name="nombres" ColumnName="nombres" />
-                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="celular" ColumnName="celular" />
-                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
-                <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
-                <ScalarProperty Name="genero" ColumnName="genero" />
-                <ScalarProperty Name="ciudad_residencia" ColumnName="ciudad_residencia" />
-                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
