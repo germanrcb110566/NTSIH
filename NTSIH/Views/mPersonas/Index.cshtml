@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<NTSIH.Models.mPersona>
-
 @{
     ViewBag.Title = "Sistema Hospitalario En Línea";
     Layout = ViewBag.layout;
@@ -16,6 +15,7 @@
 <p>
     @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
+
 <table id="TablaPersonas" class="table">
     <tr>
         <th>
@@ -114,20 +114,72 @@
                 @Html.HiddenFor(modelItem => item.Catalogo3.nombre)
                 @*@Html.DisplayFor(modelItem => item.Catalogo3.nombre)*@
             </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
-            </td>
+
         </tr>
     }
 
 </table>
+@*<td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
+        @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
+    </td>*@
 @section scripts{
-    <script>
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $("#TablaPersonas").dataTable({
+                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
+                    "bSort": true,
+                    "scrollY": 3,
+                    "scrollX": true,
+                    dom: 'Blfrtip',
+                    lengthMenu: [
+                        [3, 3,3, -1],
+                        ['10 rows', '25 rows', '50 rows', 'Show all']
+                    ],
+                    buttons: [
+                        'excelHtml5'
+                    ]
+                });
+            });
+        </script>*@
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $("#TablaPersonas").dataTable({
+                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
+                    "bSort": true,
+                    dom: 'Blfrtip',
+                    lengthMenu: [
+                        [10, 25, 50, -1],
+                        ['10 rows', '25 rows', '50 rows', 'Show all']
+                    ],
+                    buttons: [
+                        'excelHtml5'
+                    ]
+                });
+            });
+        </script>*@
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $("#TablaPersonas").dataTable({
+                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
+                    "bSort": true,
+                });
+            });
+        </script>*@
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                $("#TablaPersonas").dataTable({
+                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
+                });
+            });
+        </script>*@
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#TablaPersonas").DataTable();
         });
     </script>
+   
 }
-

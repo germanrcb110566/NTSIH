@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Sistema Hospitalario</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.dataTables.min.css" />
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -44,18 +46,28 @@
     <footer style="background-color: darkblue; color: white; text-align: center ">
         <br /><small>&copy; @DateTime.Now.Year  Todos los derechos reservados 2022 -      German Camacho B.</small><br />
     </footer>
-    <script src="~/Scripts/bootstrap.js"></script>
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+    <script type="text/javascript" src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
 
 
 
 </body>
 
 </html>
-
+@*@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TablaPersonas").DataTable();
+        });
+    </script>
+}*@
 @*La siguiente instruccion es para el manejo de las fechas con calendarios*@
 @*<script type="text/javascript">
         $(function () {

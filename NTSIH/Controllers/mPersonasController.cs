@@ -73,7 +73,9 @@ namespace NTSIH.Controllers
                 try
                 {
                     mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);
-                
+                    mPersona.nombres = mPersona.nombres.ToUpper();
+                    mPersona.apellidos = mPersona.apellidos.ToUpper();
+                    mPersona.direccion = mPersona.direccion.ToUpper();
                     db.mPersona.Add(mPersona);
                     await db.SaveChangesAsync();                
                     Rol = null;

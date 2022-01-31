@@ -20,7 +20,7 @@
             @Html.DisplayNameFor(model => model.Catalogo.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.mPersona.identificacion)
+            @Html.DisplayNameFor(model => model.mPersona.nombres)
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Catalogo.nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.mPersona.identificacion)
+                @Html.DisplayFor(modelItem => item.mPersona.nombres)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |

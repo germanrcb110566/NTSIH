@@ -16,6 +16,16 @@ namespace NTSIH.Controllers
         private SIHEntities db = new SIHEntities();
 
         // GET: mCitas
+        public ActionResult Print()
+        {
+            ViewBag.alerta = "success";
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
+
+          
+            return new Rotativa.ViewAsPdf();
+        }
+
         public async Task<ActionResult> Index()
         {
             ViewBag.alerta = "success";
@@ -81,6 +91,7 @@ namespace NTSIH.Controllers
         {
             if (ModelState.IsValid)
             {
+                mCita.motivo = mCita.motivo.ToUpper();
                 db.mCita.Add(mCita);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -125,6 +136,7 @@ namespace NTSIH.Controllers
         {
             if (ModelState.IsValid)
             {
+                mCita.motivo = mCita.motivo.ToUpper();
                 db.Entry(mCita).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
