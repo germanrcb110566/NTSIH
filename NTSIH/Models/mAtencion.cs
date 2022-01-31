@@ -11,20 +11,12 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class mAtencion
     {
         public int cita_id { get; set; }
-        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
-        [StringLength(100, MinimumLength = 2)]
-        [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "SOLO SE PERMITE LETRAS Y NÚMEROS")]
         public string diagnostico { get; set; }
-        [StringLength(100, MinimumLength = 2)]
-        [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "SOLO SE PERMITE LETRAS Y NÚMEROS")]
         public string examenes { get; set; }
-        [StringLength(100, MinimumLength = 2)]
-        [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "SOLO SE PERMITE LETRAS Y NÚMEROS")]
         public string receta { get; set; }
     
         public virtual mCita mCita { get; set; }

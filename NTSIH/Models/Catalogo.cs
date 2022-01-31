@@ -11,9 +11,7 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Linq;
-
+    
     public partial class Catalogo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,23 +27,16 @@ namespace NTSIH.Models
             this.mPersona3 = new HashSet<mPersona>();
             this.rRol_Persona = new HashSet<rRol_Persona>();
             this.rMedico_Especialidad = new HashSet<rMedico_Especialidad>();
+            this.mTratamiento = new HashSet<mTratamiento>();
         }
-        private mAuditoria aud = new mAuditoria();
+    
         public int registro_id { get; set; }
         public int catalogo_id { get; set; }
-        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
-        [StringLength(100, MinimumLength = 2)]
-        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "SOLO SE PERMITE LETRAS y NÚMEROS")]
         public string nombre { get; set; }
-        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
-        [StringLength(100, MinimumLength = 2)]
-        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "SOLO SE PERMITE LETRAS y NÚMEROS")]
         public string descripcion { get; set; }
         public bool estado { get; set; }
     
         public virtual mCatalogo mCatalogo { get; set; }
-        public virtual mCatalogo mCatalogo1 { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mCita> mCita { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -66,7 +57,7 @@ namespace NTSIH.Models
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rMedico_Especialidad> rMedico_Especialidad { get; set; }
-
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<mTratamiento> mTratamiento { get; set; }
     }
 }
