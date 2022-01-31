@@ -177,6 +177,9 @@
     <Compile Include="Models\mPersona.cs">
       <DependentUpon>NTSIHModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\mTratamiento.cs">
+      <DependentUpon>NTSIHModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NTSIHModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

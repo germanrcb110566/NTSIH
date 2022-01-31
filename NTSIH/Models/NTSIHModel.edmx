@@ -113,6 +113,16 @@
           <Property Name="clave" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="mTratamiento">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cita_id" Type="int" Nullable="false" />
+          <Property Name="catalogo_id" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="prescripcion" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="rMedico_Calendario">
           <Key>
             <PropertyRef Name="registro_id" />
@@ -293,6 +303,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_mTratamiento_Catalogo">
+          <End Role="Catalogo" Type="Self.Catalogo" Multiplicity="1" />
+          <End Role="mTratamiento" Type="Self.mTratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mTratamiento">
+              <PropertyRef Name="catalogo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mTratamiento_mCita">
+          <End Role="mCita" Type="Self.mCita" Multiplicity="1" />
+          <End Role="mTratamiento" Type="Self.mTratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mCita">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mTratamiento">
+              <PropertyRef Name="cita_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_rMedico_Calendario_mCalendario">
           <End Role="mCalendario" Type="Self.mCalendario" Multiplicity="1" />
           <End Role="rMedico_Calendario" Type="Self.rMedico_Calendario" Multiplicity="*" />
@@ -375,6 +409,7 @@
           <EntitySet Name="mParametros" EntityType="Self.mParametros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mPermisos" EntityType="Self.mPermisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mPersona" EntityType="Self.mPersona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mTratamiento" EntityType="Self.mTratamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rMedico_Calendario" EntityType="Self.rMedico_Calendario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rMedico_Especialidad" EntityType="Self.rMedico_Especialidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rRol_Persona" EntityType="Self.rRol_Persona" Schema="dbo" store:Type="Tables" />
@@ -429,6 +464,14 @@
           <AssociationSet Name="FK_mPersona_Catalogo3" Association="Self.FK_mPersona_Catalogo3">
             <End Role="Catalogo" EntitySet="Catalogo" />
             <End Role="mPersona" EntitySet="mPersona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mTratamiento_Catalogo" Association="Self.FK_mTratamiento_Catalogo">
+            <End Role="Catalogo" EntitySet="Catalogo" />
+            <End Role="mTratamiento" EntitySet="mTratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mTratamiento_mCita" Association="Self.FK_mTratamiento_mCita">
+            <End Role="mCita" EntitySet="mCita" />
+            <End Role="mTratamiento" EntitySet="mTratamiento" />
           </AssociationSet>
           <AssociationSet Name="FK_rMedico_Calendario_mCalendario" Association="Self.FK_rMedico_Calendario_mCalendario">
             <End Role="mCalendario" EntitySet="mCalendario" />
@@ -550,6 +593,15 @@
             <End Role="mPersona" EntitySet="mPersona" />
             <End Role="rMedico_Especialidad" EntitySet="rMedico_Especialidad" />
           </AssociationSet>
+          <EntitySet Name="mTratamiento" EntityType="SIHModel.mTratamiento" />
+          <AssociationSet Name="FK_mTratamiento_Catalogo" Association="SIHModel.FK_mTratamiento_Catalogo">
+            <End Role="Catalogo" EntitySet="Catalogo" />
+            <End Role="mTratamiento" EntitySet="mTratamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mTratamiento_mCita" Association="SIHModel.FK_mTratamiento_mCita">
+            <End Role="mCita" EntitySet="mCita" />
+            <End Role="mTratamiento" EntitySet="mTratamiento" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_ListarMedicos_Result">
           <Property Type="Int32" Name="registro_id" Nullable="false" />
@@ -605,6 +657,7 @@
           <NavigationProperty Name="mPersona3" Relationship="SIHModel.FK_mPersona_Catalogo3" FromRole="Catalogo" ToRole="mPersona" />
           <NavigationProperty Name="rRol_Persona" Relationship="SIHModel.FK_rRol_Persona_Catalogo" FromRole="Catalogo" ToRole="rRol_Persona" />
           <NavigationProperty Name="rMedico_Especialidad" Relationship="SIHModel.FK_rMedico_Especialidad_Catalogo" FromRole="Catalogo" ToRole="rMedico_Especialidad" />
+          <NavigationProperty Name="mTratamiento" Relationship="SIHModel.FK_mTratamiento_Catalogo" FromRole="Catalogo" ToRole="mTratamiento" />
         </EntityType>
         <EntityType Name="mAtencion">
           <Key>
@@ -670,6 +723,7 @@
           <NavigationProperty Name="mAtencion" Relationship="SIHModel.FK_mAtencion_mCita1" FromRole="mCita" ToRole="mAtencion" />
           <NavigationProperty Name="mPersona" Relationship="SIHModel.FK_mCita_mPersona" FromRole="mCita" ToRole="mPersona" />
           <NavigationProperty Name="mPersona1" Relationship="SIHModel.FK_mCita_mPersona1" FromRole="mCita" ToRole="mPersona" />
+          <NavigationProperty Name="mTratamiento" Relationship="SIHModel.FK_mTratamiento_mCita" FromRole="mCita" ToRole="mTratamiento" />
         </EntityType>
         <EntityType Name="mParametros">
           <Key>
@@ -983,6 +1037,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="mTratamiento">
+          <Key>
+            <PropertyRef Name="registro_id" />
+          </Key>
+          <Property Name="registro_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cita_id" Type="Int32" Nullable="false" />
+          <Property Name="catalogo_id" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="prescripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Catalogo" Relationship="SIHModel.FK_mTratamiento_Catalogo" FromRole="mTratamiento" ToRole="Catalogo" />
+          <NavigationProperty Name="mCita" Relationship="SIHModel.FK_mTratamiento_mCita" FromRole="mTratamiento" ToRole="mCita" />
+        </EntityType>
+        <Association Name="FK_mTratamiento_Catalogo">
+          <End Type="SIHModel.Catalogo" Role="Catalogo" Multiplicity="1" />
+          <End Type="SIHModel.mTratamiento" Role="mTratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Catalogo">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mTratamiento">
+              <PropertyRef Name="catalogo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mTratamiento_mCita">
+          <End Type="SIHModel.mCita" Role="mCita" Multiplicity="1" />
+          <End Type="SIHModel.mTratamiento" Role="mTratamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mCita">
+              <PropertyRef Name="registro_id" />
+            </Principal>
+            <Dependent Role="mTratamiento">
+              <PropertyRef Name="cita_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1129,6 +1219,17 @@
               <MappingFragment StoreEntitySet="rMedico_Especialidad">
                 <ScalarProperty Name="especialidad_id" ColumnName="especialidad_id" />
                 <ScalarProperty Name="medico_id" ColumnName="medico_id" />
+                <ScalarProperty Name="registro_id" ColumnName="registro_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mTratamiento">
+            <EntityTypeMapping TypeName="SIHModel.mTratamiento">
+              <MappingFragment StoreEntitySet="mTratamiento">
+                <ScalarProperty Name="prescripcion" ColumnName="prescripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="catalogo_id" ColumnName="catalogo_id" />
+                <ScalarProperty Name="cita_id" ColumnName="cita_id" />
                 <ScalarProperty Name="registro_id" ColumnName="registro_id" />
               </MappingFragment>
             </EntityTypeMapping>

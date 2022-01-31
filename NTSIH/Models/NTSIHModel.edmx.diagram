@@ -36,6 +36,9 @@
         <EntityTypeShape EntityType="SIHModel.rMedico_Especialidad" Width="1.5" PointX="7.5" PointY="7.625" />
         <AssociationConnector Association="SIHModel.FK_rMedico_Especialidad_Catalogo" />
         <AssociationConnector Association="SIHModel.FK_rMedico_Especialidad_mPersona" />
+        <EntityTypeShape EntityType="SIHModel.mTratamiento" Width="1.5" PointX="12.75" PointY="9.625" />
+        <AssociationConnector Association="SIHModel.FK_mTratamiento_Catalogo" />
+        <AssociationConnector Association="SIHModel.FK_mTratamiento_mCita" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
