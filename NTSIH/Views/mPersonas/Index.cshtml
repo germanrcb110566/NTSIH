@@ -15,7 +15,12 @@
 <p>
     @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 <table id="TablaPersonas" class="table">
     <tr>
         <th>
@@ -65,65 +70,65 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.identificacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombres)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.apellidos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.celular)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha_nacimiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.correo_electronico)
-            </td>
-            <td>
-                @Html.HiddenFor(modelItem => item.clave)
-                @*@Html.DisplayFor(modelItem => item.clave)*@
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.identificacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.nombres)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.apellidos)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.direccion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.telefono)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.celular)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.correo_electronico)
+    </td>
+    <td>
+        @Html.HiddenFor(modelItem => item.clave)
+        @*@Html.DisplayFor(modelItem => item.clave)*@
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.estado)
+    </td>
+    <td>
 
-                @Html.HiddenFor(modelItem => item.Catalogo.nombre)
-                @*@Html.DisplayFor(modelItem => item.Catalogo.nombre)*@
-            </td>
-            <td>
-                @Html.HiddenFor(modelItem => item.Catalogo1.nombre)
-                @*@Html.DisplayFor(modelItem => item.Catalogo1.nombre)*@
-            </td>
-            <td>
-                @Html.HiddenFor(modelItem => item.Catalogo2.nombre)
-                @*@Html.DisplayFor(modelItem => item.Catalogo2.nombre)*@
-            </td>
-            <td>
-                @Html.HiddenFor(modelItem => item.Catalogo3.nombre)
-                @*@Html.DisplayFor(modelItem => item.Catalogo3.nombre)*@
-            </td>
-
-        </tr>
+        @Html.HiddenFor(modelItem => item.Catalogo.nombre)
+        @*@Html.DisplayFor(modelItem => item.Catalogo.nombre)*@
+    </td>
+    <td>
+        @Html.HiddenFor(modelItem => item.Catalogo1.nombre)
+        @*@Html.DisplayFor(modelItem => item.Catalogo1.nombre)*@
+    </td>
+    <td>
+        @Html.HiddenFor(modelItem => item.Catalogo2.nombre)
+        @*@Html.DisplayFor(modelItem => item.Catalogo2.nombre)*@
+    </td>
+    <td>
+        @Html.HiddenFor(modelItem => item.Catalogo3.nombre)
+        @*@Html.DisplayFor(modelItem => item.Catalogo3.nombre)*@
+    </td>
+    <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
+        </td>
+</tr>
     }
 
 </table>
-@*<td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
-        @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
-        @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
-    </td>*@
+
 @section scripts{
     @*<script type="text/javascript">
             $(document).ready(function () {
@@ -181,5 +186,5 @@
             $("#TablaPersonas").DataTable();
         });
     </script>
-   
+
 }

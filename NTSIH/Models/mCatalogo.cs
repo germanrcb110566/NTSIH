@@ -11,7 +11,8 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class mCatalogo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,9 @@ namespace NTSIH.Models
         }
     
         public int registro_id { get; set; }
+        [Required]
+        [StringLength(100, MinimumLength = 2)]
+        [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "SOLO SE PERMITE LETRAS Y NÚMEROS")] 
         public string catalogo { get; set; }
         public bool estado { get; set; }
     

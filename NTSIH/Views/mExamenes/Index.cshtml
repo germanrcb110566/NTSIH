@@ -1,12 +1,16 @@
 ﻿@model IEnumerable<NTSIH.Models.mTratamiento>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Sistema Hospitalario En Línea";
+    Layout = ViewBag.layout;
 }
-
-<h2>Index</h2>
-
+<div id="caja">
+    <div id="texto-left" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta">- - <b>@ViewBag.msgmodulo</b> - -</div>
+    <div id="texto-rigth" style="color: black; height:50px" class="alert">@ViewBag.acceso</div>
+</div>
+<br />
+<br />
+<br />
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -27,26 +31,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prescripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Catalogo.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mCita.motivo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.registro_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.registro_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.registro_id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prescripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Catalogo.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mCita.motivo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.registro_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.registro_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.registro_id })
+            </td>
+        </tr>
+    }
 
 </table>
