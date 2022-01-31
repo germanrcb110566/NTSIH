@@ -39,6 +39,7 @@ namespace NTSIH.Models
         public virtual DbSet<rMedico_Calendario> rMedico_Calendario { get; set; }
         public virtual DbSet<rRol_Persona> rRol_Persona { get; set; }
         public virtual DbSet<rMedico_Especialidad> rMedico_Especialidad { get; set; }
+        public virtual DbSet<mTratamiento> mTratamiento { get; set; }
     
         public virtual ObjectResult<sp_ListarMedicos_Result> sp_ListarMedicos()
         {
