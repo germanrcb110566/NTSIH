@@ -140,9 +140,11 @@
     <Compile Include="Controllers\mCalendariosController.cs" />
     <Compile Include="Controllers\mCatalogosController.cs" />
     <Compile Include="Controllers\mCitasController.cs" />
+    <Compile Include="Controllers\mExamenesController.cs" />
     <Compile Include="Controllers\mParametrosController.cs" />
     <Compile Include="Controllers\mPermisosController.cs" />
     <Compile Include="Controllers\mPersonasController.cs" />
+    <Compile Include="Controllers\mTratamientoController.cs" />
     <Compile Include="Controllers\rMedico_CalendarioController.cs" />
     <Compile Include="Controllers\rMedico_EspecialidadController.cs" />
     <Compile Include="Controllers\rRol_PersonaController.cs" />
@@ -341,6 +343,16 @@
     <Content Include="Views\rMedico_Especialidad\Details.cshtml" />
     <Content Include="Views\rMedico_Especialidad\Edit.cshtml" />
     <Content Include="Views\rMedico_Especialidad\Index.cshtml" />
+    <Content Include="Views\mTratamiento\Create.cshtml" />
+    <Content Include="Views\mTratamiento\Delete.cshtml" />
+    <Content Include="Views\mTratamiento\Details.cshtml" />
+    <Content Include="Views\mTratamiento\Edit.cshtml" />
+    <Content Include="Views\mTratamiento\Index.cshtml" />
+    <Content Include="Views\mExamenes\Create.cshtml" />
+    <Content Include="Views\mExamenes\Delete.cshtml" />
+    <Content Include="Views\mExamenes\Details.cshtml" />
+    <Content Include="Views\mExamenes\Edit.cshtml" />
+    <Content Include="Views\mExamenes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
