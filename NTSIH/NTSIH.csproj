@@ -143,7 +143,6 @@
     <Compile Include="Controllers\mParametrosController.cs" />
     <Compile Include="Controllers\mPermisosController.cs" />
     <Compile Include="Controllers\mPersonasController.cs" />
-    <Compile Include="Controllers\mTratamientoesController.cs" />
     <Compile Include="Controllers\rMedico_CalendarioController.cs" />
     <Compile Include="Controllers\rMedico_EspecialidadController.cs" />
     <Compile Include="Controllers\rRol_PersonaController.cs" />
@@ -176,9 +175,6 @@
       <DependentUpon>NTSIHModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\mPersona.cs">
-      <DependentUpon>NTSIHModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\mTratamiento.cs">
       <DependentUpon>NTSIHModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\NTSIHModel.Context.cs">
@@ -342,11 +338,6 @@
     <Content Include="Views\rMedico_Especialidad\Details.cshtml" />
     <Content Include="Views\rMedico_Especialidad\Edit.cshtml" />
     <Content Include="Views\rMedico_Especialidad\Index.cshtml" />
-    <Content Include="Views\mTratamientoes\Create.cshtml" />
-    <Content Include="Views\mTratamientoes\Delete.cshtml" />
-    <Content Include="Views\mTratamientoes\Details.cshtml" />
-    <Content Include="Views\mTratamientoes\Edit.cshtml" />
-    <Content Include="Views\mTratamientoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

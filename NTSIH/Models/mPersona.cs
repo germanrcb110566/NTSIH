@@ -11,7 +11,9 @@ namespace NTSIH.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+
     public partial class mPersona
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,21 +28,79 @@ namespace NTSIH.Models
         }
     
         public int registro_id { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [Display(Name = "SELECCIONE TIPO DE IDENTIFICACIÓN")]
+        [DisplayFormat(NullDisplayText = "TIPO DE IDENTIFICACIÓN NO SELECCIONADO")]
         public int identificacion_tipo { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [StringLength(13, MinimumLength = 10)]
+        [RegularExpression("(^[0-9]+$)", ErrorMessage = "SOLO SE PERMITEN NÚMEROS")]
         public string identificacion { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [StringLength(100, MinimumLength = 2)]
+        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "SOLO SE PERMITE LETRAS")]
         public string nombres { get; set; }
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [StringLength(100, MinimumLength = 2)]
+        [RegularExpression("^[a-zA-Z ]*$", ErrorMessage = "SOLO SE PERMITE LETRAS")]
         public string apellidos { get; set; }
+
+
+        [Required(ErrorMessage = "{0} ES REQUERIDO")]
+        [StringLength(100, MinimumLength = 10)]
         public string direccion { get; set; }
+
+
+        
+        [RegularExpression("(^[0-9]+$)", ErrorMessage = "SOLO SE PERMITEN NÚMEROS")]
+        [StringLength(10, MinimumLength = 7)]
         public string telefono { get; set; }
+
+
+        [RegularExpression("(^[0-9]+$)", ErrorMessage = "SOLO SE PERMITEN NÚMEROS")]
+        [StringLength(10, MinimumLength = 10)]
         public string celular { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fecha de Nacimiento")]
         public System.DateTime fecha_nacimiento { get; set; }
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "EL CORREO ELECTÓNICO NO PUEDE TENER ESPACIOS NI CARACTERES ESPECIALES")]
+        [Display(Name = "Email")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string correo_electronico { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
         public int genero { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
         public int ciudad_residencia { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
         public int nacionalidad { get; set; }
+
+
+        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        [DataType(DataType.Password)]
         public string clave { get; set; }
+
         public bool estado { get; set; }
-    
+
         public virtual Catalogo Catalogo { get; set; }
         public virtual Catalogo Catalogo1 { get; set; }
         public virtual Catalogo Catalogo2 { get; set; }
@@ -57,5 +117,7 @@ namespace NTSIH.Models
         public virtual ICollection<rRol_Persona> rRol_Persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<rMedico_Especialidad> rMedico_Especialidad { get; set; }
+
+
     }
 }
