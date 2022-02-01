@@ -18,10 +18,6 @@ namespace NTSIH.Controllers
         // GET: mExamenes
         public async Task<ActionResult> Index()
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             var mTratamiento = db.mTratamiento.Include(m => m.Catalogo).Where(x => x.Catalogo.catalogo_id == 11).Include(m => m.mCita);
             return View(await mTratamiento.ToListAsync());
         }
@@ -29,10 +25,6 @@ namespace NTSIH.Controllers
         // GET: mExamenes/Details/5
         public async Task<ActionResult> Details(int? id)
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -48,10 +40,6 @@ namespace NTSIH.Controllers
         // GET: mExamenes/Create
         public ActionResult Create()
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             ViewBag.catalogo_id = new SelectList(db.Catalogo.Where(x => x.catalogo_id == 11), "registro_id", "nombre");
             ViewBag.cita_id = new SelectList(db.mCita, "registro_id", "motivo");
             return View();
@@ -64,10 +52,6 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "registro_id,cita_id,catalogo_id,cantidad,prescripcion")] mTratamiento mTratamiento)
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             if (ModelState.IsValid)
             {
                 db.mTratamiento.Add(mTratamiento);
@@ -83,10 +67,6 @@ namespace NTSIH.Controllers
         // GET: mExamenes/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -108,10 +88,6 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "registro_id,cita_id,catalogo_id,cantidad,prescripcion")] mTratamiento mTratamiento)
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             if (ModelState.IsValid)
             {
                 db.Entry(mTratamiento).State = EntityState.Modified;
@@ -126,10 +102,6 @@ namespace NTSIH.Controllers
         // GET: mExamenes/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -147,10 +119,6 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
             mTratamiento mTratamiento = await db.mTratamiento.FindAsync(id);
             db.mTratamiento.Remove(mTratamiento);
             await db.SaveChangesAsync();
