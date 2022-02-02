@@ -91,13 +91,16 @@
 
 }
 <div>
-    @Html.ActionLink("Regresar", "Index")
-    
+    @Html.ActionLink("Regresar", "Index")|
 
+    <a href="Print?id=1">Generar PDF</a>
 </div>
-<a href="Print?id=1">Generar PDF</a>
 
+<br />
+<br />
+<br />
 
+<div id="msgerror" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta"><b>@ViewBag.error</b></div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -17,9 +17,7 @@ namespace NTSIH.Models
     {
         public int registro_id { get; set; }
         public string smtpserver { get; set; }
-        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
-        [StringLength(6, MinimumLength = 3)]
-        [RegularExpression("(^[0-9]+$)", ErrorMessage = "SOLO SE PERMITEN NÚMEROS")]
+       
         public int smtppuerto { get; set; }
         [Required(ErrorMessage = "{0}  ES REQUERIDO")]
         [RegularExpression(@"^\S*$", ErrorMessage = "EL CORREO ELECTÓNICO NO PUEDE TENER ESPACIOS NI CARACTERES ESPECIALES")]

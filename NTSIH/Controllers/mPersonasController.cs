@@ -73,6 +73,7 @@ namespace NTSIH.Controllers
                 try
                 {
                     mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);
+                    mPersona.estado = true;
                     mPersona.nombres = mPersona.nombres.ToUpper();
                     mPersona.apellidos = mPersona.apellidos.ToUpper();
                     mPersona.direccion = mPersona.direccion.ToUpper();
@@ -222,8 +223,12 @@ namespace NTSIH.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "registro_id,identificacion_tipo,identificacion,nombres,apellidos,direccion,telefono,celular,fecha_nacimiento,correo_electronico,genero,ciudad_residencia,nacionalidad,clave,estado")] mPersona mPersona)
         {
-            string clave = EncDecryptController.GetSHA256(mPersona.clave);
-            mPersona.clave = clave;
+            if (mPersona.clave != null)
+            {
+                string clave = EncDecryptController.GetSHA256(mPersona.clave);
+                mPersona.clave = clave;
+            }
+            
             if (ModelState.IsValid)
             {
                 //mPersona.clave = EncDecryptController.GetSHA256(mPersona.clave);

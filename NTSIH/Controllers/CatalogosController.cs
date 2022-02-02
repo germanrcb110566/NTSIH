@@ -23,7 +23,7 @@ namespace NTSIH.Controllers
             ViewBag.layout = Session["Layout"];
             ViewBag.msgmodulo = "Atributo de Catálogos".ToUpper();
 
-            var catalogo = db.Catalogo.Include(c => c.mCatalogo);
+            var catalogo = db.Catalogo.Include(c => c.mCatalogo).OrderBy(m=>m.mCatalogo.catalogo);
             
             return View(await catalogo.ToListAsync());
         }

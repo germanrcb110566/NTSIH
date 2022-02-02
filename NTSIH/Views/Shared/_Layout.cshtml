@@ -7,10 +7,8 @@
     <title>@ViewBag.Title - Sistema Hospitalario</title>
 
 
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="~/Content/jquery.dataTables.min.css" />
-
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/datatablescss")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -43,11 +41,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatablesjs")
     @RenderSection("scripts", required: false)
-
-    <script type="text/javascript" src="~/Scripts/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
 
 
 </body>

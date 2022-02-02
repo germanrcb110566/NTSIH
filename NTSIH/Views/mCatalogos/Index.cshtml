@@ -16,32 +16,41 @@
 <p>
     @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.catalogo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="TablaPersonas" class="table table-striped table-bordered" style="width:80%">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.catalogo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.catalogo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th></th>
         </tr>
-    }
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.catalogo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
+                </td>
+            </tr>
+        }
 
 </table>
+<br />
+<br />
+<br />
+
+<div id="msgerror" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta"><b>@ViewBag.error</b></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

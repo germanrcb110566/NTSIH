@@ -73,6 +73,11 @@
     @Html.ActionLink("Regresar", "Index")
 </div>
 
+<br />
+<br />
+<br />
+
+<div id="msgerror" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta"><b>@ViewBag.error</b></div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

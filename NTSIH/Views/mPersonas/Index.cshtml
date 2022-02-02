@@ -16,175 +16,111 @@
     @Html.ActionLink("Crear nuevo registro", "Create")
 </p>
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<table id="TablaPersonas" class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.identificacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.apellidos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.celular)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecha_nacimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.correo_electronico)
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.clave)*@
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Catalogo.nombre)*@
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Catalogo1.nombre)*@
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Catalogo2.nombre)*@
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.Catalogo3.nombre)*@
-        </th>
-        <th></th>
-    </tr>
-
+<table id="TablaPersonas" class="table table-striped table-bordered" style="width:80%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_nacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correo_electronico)
+            </th>
+            <th></th>
+            <th>Acción</th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.clave)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Catalogo.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Catalogo1.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Catalogo2.nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Catalogo3.nombre)
+                </th>
+                <th></th>*@
+        </tr>
+    </thead>
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.identificacion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.nombres)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.apellidos)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.direccion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.telefono)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.celular)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.fecha_nacimiento)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.correo_electronico)
-    </td>
-    <td>
-        @Html.HiddenFor(modelItem => item.clave)
-        @*@Html.DisplayFor(modelItem => item.clave)*@
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.estado)
-    </td>
-    <td>
-
-        @Html.HiddenFor(modelItem => item.Catalogo.nombre)
-        @*@Html.DisplayFor(modelItem => item.Catalogo.nombre)*@
-    </td>
-    <td>
-        @Html.HiddenFor(modelItem => item.Catalogo1.nombre)
-        @*@Html.DisplayFor(modelItem => item.Catalogo1.nombre)*@
-    </td>
-    <td>
-        @Html.HiddenFor(modelItem => item.Catalogo2.nombre)
-        @*@Html.DisplayFor(modelItem => item.Catalogo2.nombre)*@
-    </td>
-    <td>
-        @Html.HiddenFor(modelItem => item.Catalogo3.nombre)
-        @*@Html.DisplayFor(modelItem => item.Catalogo3.nombre)*@
-    </td>
-    <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
-        </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.correo_electronico)
+            </td>
+            <td>
+                @Html.HiddenFor(modelItem => item.clave)
+                @*@Html.DisplayFor(modelItem => item.clave)*@
+                @Html.HiddenFor(modelItem => item.clave)
+                @*@Html.DisplayFor(modelItem => item.estado)*@
+                @Html.HiddenFor(modelItem => item.Catalogo.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo.nombre)*@
+                @Html.HiddenFor(modelItem => item.Catalogo1.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo1.nombre)*@
+                @Html.HiddenFor(modelItem => item.Catalogo2.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo2.nombre)*@
+                @Html.HiddenFor(modelItem => item.Catalogo3.nombre)
+                @*@Html.DisplayFor(modelItem => item.Catalogo3.nombre)*@
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.registro_id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.registro_id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.registro_id })
+            </td>
+        </tr>
     }
 
 </table>
+<br />
+<br />
+<br />
 
-@section scripts{
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $("#TablaPersonas").dataTable({
-                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
-                    "bSort": true,
-                    "scrollY": 3,
-                    "scrollX": true,
-                    dom: 'Blfrtip',
-                    lengthMenu: [
-                        [3, 3,3, -1],
-                        ['10 rows', '25 rows', '50 rows', 'Show all']
-                    ],
-                    buttons: [
-                        'excelHtml5'
-                    ]
-                });
-            });
-        </script>*@
-
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $("#TablaPersonas").dataTable({
-                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
-                    "bSort": true,
-                    dom: 'Blfrtip',
-                    lengthMenu: [
-                        [10, 25, 50, -1],
-                        ['10 rows', '25 rows', '50 rows', 'Show all']
-                    ],
-                    buttons: [
-                        'excelHtml5'
-                    ]
-                });
-            });
-        </script>*@
-
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $("#TablaPersonas").dataTable({
-                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
-                    "bSort": true,
-                });
-            });
-        </script>*@
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                $("#TablaPersonas").dataTable({
-                    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [3] }],
-                });
-            });
-        </script>*@
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#TablaPersonas").DataTable();
-        });
-    </script>
-
+<div id="msgerror" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta"><b>@ViewBag.error</b></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

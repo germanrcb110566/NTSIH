@@ -20,17 +20,25 @@ namespace NTSIH
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                        "~/Script/bootstrap.js",
+                        "~/Script/jquery.validate.min.js",
+                        "~/Script/jquery.validate.unobtrusive.min.js",
                       "~/Scripts/bootstrap.js"));
+            
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+                        bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+
             bundles.Add(new ScriptBundle("~/bundles/datatablesjs").Include(
-                 "~/Scripts/datatables.js"));
+                                         "~/Scripts/datatables.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/datatablescss").Include(
-                        "~/Content/datatables.css"));
+                                         "~/Content/datatables.css"));
+
+            
+
         }
     }
 }

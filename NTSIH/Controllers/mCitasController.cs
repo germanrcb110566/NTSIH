@@ -34,6 +34,31 @@ namespace NTSIH.Controllers
 
             //db.Catalogo.Where(d => d.catalogo_id == 1),
             var mCita = db.mCita.Include(m => m.Catalogo).Include(m => m.mAtencion).Include(m => m.mPersona).Include(m => m.mPersona1);
+
+
+            ViewBag.especialidad_id = "1";
+            //            select* from mPersona a
+            //join rMedico_Especialidad b on a.registro_id = b.medico_id
+            //join Catalogo c on b.especialidad_id = c.registro_id
+            //where c.registro_id = 23
+
+
+
+
+
+            var entryPoint = (from aa in db.mPersona
+                              join b in db.rMedico_Especialidad on aa.registro_id equals b.medico_id 
+                              join cc in db.Catalogo on b.especialidad_id equals cc.registro_id
+                              where cc.registro_id == 23
+                              select new
+                              {                        
+                              }).Take(10);
+
+
+            //ViewBag.genero = new SelectList(db.Catalogo.Where(d => d.catalogo_id == 2), "registro_id", "nombre");
+            //TempData["especialidad"] = especialidadSelectList;
+
+
             return View(await mCita.ToListAsync());
         }
 

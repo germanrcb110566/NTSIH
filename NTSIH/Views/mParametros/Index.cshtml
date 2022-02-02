@@ -27,9 +27,9 @@
         <th>
             @Html.DisplayNameFor(model => model.correo_sistema)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.clave_correo)
-        </th>*@
+        <th>
+                @Html.DisplayNameFor(model => model.clave_correo)
+            </th>
         <th>
             @Html.DisplayNameFor(model => model.estado)
         </th>
@@ -48,9 +48,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.correo_sistema)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.clave_correo)
-            </td>*@
+            <td>
+                    @Html.DisplayFor(modelItem => item.clave_correo)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.estado)
             </td>
@@ -63,5 +63,11 @@
     }
 
 </table>
+<br />
+<br />
+<br />
 
-
+<div id="msgerror" style="color: blue; height:50px" class="alert alert-@ViewBag.alerta"><b>@ViewBag.error</b></div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

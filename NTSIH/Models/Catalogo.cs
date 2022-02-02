@@ -37,9 +37,9 @@ namespace NTSIH.Models
         [StringLength(100, MinimumLength = 2)]
         [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "SOLO SE PERMITE LETRAS y NÚMEROS")]
         public string nombre { get; set; }
-        [Required(ErrorMessage = "{0}  ES REQUERIDO")]
-        [StringLength(100, MinimumLength = 2)]
-        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "SOLO SE PERMITE LETRAS y NÚMEROS")]
+        //[Required(ErrorMessage = "{0}  ES REQUERIDO")]
+        //[StringLength(100, MinimumLength = 2)]
+        //[RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "SOLO SE PERMITE LETRAS y NÚMEROS")]
         public string descripcion { get; set; }
         public bool estado { get; set; }
     
