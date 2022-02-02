@@ -395,8 +395,12 @@
     </Content>
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
-    <Content Include="Rotativa\wkhtmltoimage.exe" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Rotativa\wkhtmltoimage.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Rotativa\wkhtmltopdf.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\NTSIHModel.edmx">
@@ -500,6 +504,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\imagenes\logohospital.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -596,9 +601,13 @@
     <Content Include="Views\mExamenes\Details.cshtml" />
     <Content Include="Views\mExamenes\Edit.cshtml" />
     <Content Include="Views\mExamenes\Index.cshtml" />
+    <Content Include="Views\mCitas\HeaderPDF.cshtml" />
+    <Content Include="Views\mCitas\FooterPDF.cshtml" />
+    <Content Include="Views\mExamenes\Print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Imagenes\" />
     <Folder Include="Views\EncDecrypt\" />
   </ItemGroup>
   <ItemGroup>

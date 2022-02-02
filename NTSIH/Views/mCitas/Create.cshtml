@@ -98,15 +98,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    function UserChanged() {
-
-    var tiopCodigo = $('#dllTipOpera option:selected').val();
-    LoadDataTable(tiopCodigo);
-
-    var url = "@Url.Action("Create", "EqopInfi")?tiopCodigo=" + tiopCodigo;
-    $('#btnCrearEqopInfi').data('url', url);
-    }
-}

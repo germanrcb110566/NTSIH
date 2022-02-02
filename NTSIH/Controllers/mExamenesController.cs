@@ -8,12 +8,65 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NTSIH.Models;
+using Rotativa;
 
 namespace NTSIH.Controllers
 {
     public class mExamenesController : Controller
     {
         private SIHEntities db = new SIHEntities();
+
+
+
+        public ActionResult HeaderPDF()
+        {
+            return View("HeaderPDF");
+        }
+
+        public ActionResult FooterPDF()
+        {
+            return View("FooterPDF");
+        }
+
+
+        
+        public async Task<ActionResult> Print(int? id)
+        {
+            // Define la URL de la Cabecera 
+            string _headerUrl = Url.Action("HeaderPDF", "mExamenes", null, "http");
+            // Define la URL del Pie de página
+            string _footerUrl = Url.Action("FooterPDF", "mExamenes", null, "http");
+            ViewBag.alerta = "success";
+            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
+            ViewBag.layout = Session["Layout"];
+
+            var mTratamiento = db.mTratamiento.Where(m=>m.cita_id==id).Include(m => m.Catalogo).Where(x => x.Catalogo.catalogo_id == 11).Include(m => m.mCita);
+            string Mensaje="";
+            mPersona oUser = EncDecryptController.unRegistroId(ref  Mensaje,  id);
+            ViewBag.doctornombre = oUser.nombres;
+            ViewBag.doctorapellido = oUser.apellidos;
+            ViewBag.doctortelefono = oUser.telefono;
+
+
+
+            //return View(await mTratamiento.ToListAsync());
+
+
+
+            //return new ViewAsPdf("Print", await mCita.ToListAsync());
+
+            return new ViewAsPdf("Print", await mTratamiento.ToListAsync())
+            {
+                // Establece la Cabecera y el Pie de página
+                CustomSwitches = "--header-html " + _headerUrl + " --header-spacing 0 " +
+                                 "--footer-html " + _footerUrl + " --footer-spacing 0"
+                ,
+                PageSize = Rotativa.Options.Size.A4
+                //,FileName = "CustomersLista.pdf" // SI QUEREMOS QUE EL ARCHIVO SE DESCARGUE DIRECTAMENTE
+                ,
+                PageMargins = new Rotativa.Options.Margins(40, 10, 10, 10)
+            };
+        }
 
         // GET: mExamenes
         public async Task<ActionResult> Index()

@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NTSIH.Models;
+using Rotativa;
 
 namespace NTSIH.Controllers
 {
@@ -15,16 +16,7 @@ namespace NTSIH.Controllers
     {
         private SIHEntities db = new SIHEntities();
 
-        // GET: mCitas
-        public ActionResult Print()
-        {
-            ViewBag.alerta = "success";
-            ViewBag.acceso = "Acceso A:".ToUpper() + Session["Nombres"] + "........ASIGNADO EL ROL:" + Session["Rol"];
-            ViewBag.layout = Session["Layout"];
-
-          
-            return new Rotativa.ViewAsPdf();
-        }
+        
 
         public async Task<ActionResult> Index()
         {

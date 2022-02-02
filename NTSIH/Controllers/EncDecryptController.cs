@@ -145,7 +145,25 @@ namespace NTSIH.Controllers
             }
             return registro;
         }
-        
+        public static mPersona unRegistroId(ref string Mensaje, int? Identificacion)
+        {
+            var registro = new mPersona();
+            try
+            {
+                using (var conexion = new SIHEntities())
+                {
+                    registro = conexion.mPersona.Where(a => a.registro_id == Identificacion).Single();
+                    Mensaje = "0000SENTENCIA EJECUTADA CORRECTAMENTE";
+                }
+            }
+            catch (Exception ex)
+            {
+                Mensaje = "0010PERSONA NO ESTA REGISTRADA EN EL SISTEMA.  Información adicional:".ToUpper() + ex.Message;
+
+            }
+            return registro;
+        }
+
     }
     public class MiExcepciones : Exception
     {
