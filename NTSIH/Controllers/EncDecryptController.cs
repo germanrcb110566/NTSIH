@@ -28,7 +28,7 @@ namespace NTSIH.Controllers
             int Rol_Id = 0;
             string Rol = null;
             string SentenciaSQL = "select nombre from catalogo where  registro_id in (";
-            SentenciaSQL += "select rol_id from rrol_Persona where persona_id in ";
+            SentenciaSQL += "select max(rol_id) from rrol_Persona where persona_id in ";
             SentenciaSQL += "(select registro_id from mPersona where identificacion='" + Persona_Id + "')";
             SentenciaSQL += ") order by descripcion desc";
             string SentenciaSQL2 = "select registro_id from catalogo where  registro_id in (";

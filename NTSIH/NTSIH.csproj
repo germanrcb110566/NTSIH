@@ -414,6 +414,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\datatables.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />

@@ -112,7 +112,7 @@ namespace NTSIH.Controllers
         }
 
 
-        public ActionResult Cerrar()
+        public ActionResult Salir()
         {
             Session["identificacion"] = null;
             Session["Rol"] = null;
